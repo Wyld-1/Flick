@@ -1,17 +1,34 @@
 //
-//  CodaApp.swift
-//  Coda Watch App
+//  FlickApp.swift
+//  Flick Watch App
 //
-//  Created by Liam Lefohn on 2/5/26.
+//  Created by Liam Lefohn on 1/27/26.
 //
+// Entry point, routes to correct view
 
 import SwiftUI
 
 @main
-struct Coda_Watch_AppApp: App {
+struct Flick_Watch_AppApp: App {
+    @StateObject private var appState = AppStateManager()
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ZStack {
+                switch appState.currentState {
+                case .welcome:
+                    WelcomeView()
+                        .transition(.scale(scale: 0.8).combined(with: .opacity))
+                case .tutorial:
+                    TutorialView()
+                        .transition(.scale(scale: 0.8).combined(with: .opacity))
+                case .main:
+                    MainView()
+                        .transition(.scale(scale: 0.8).combined(with: .opacity))
+                }
+            }
+            .animation(.easeInOut(duration: 0.6), value: appState.currentState)
+            .environmentObject(appState)
         }
     }
 }
