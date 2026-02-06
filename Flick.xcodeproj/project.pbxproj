@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		235266792F350B010071AD79 /* Coda Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 235266782F350B010071AD79 /* Coda Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		235266792F350B010071AD79 /* Flick Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 235266782F350B010071AD79 /* Flick Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		235266C62F3517110071AD79 /* SharedTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235266C52F3517060071AD79 /* SharedTypes.swift */; };
 		235266CA2F35195D0071AD79 /* WatchConnectivityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235266C92F35188E0071AD79 /* WatchConnectivityManager.swift */; };
 		235266CB2F35195D0071AD79 /* WatchConnectivityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235266C92F35188E0071AD79 /* WatchConnectivityManager.swift */; };
@@ -60,7 +60,7 @@
 			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
 			dstSubfolderSpec = 16;
 			files = (
-				235266792F350B010071AD79 /* Coda Watch App.app in Embed Watch Content */,
+				235266792F350B010071AD79 /* Flick Watch App.app in Embed Watch Content */,
 			);
 			name = "Embed Watch Content";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -68,46 +68,46 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		235266552F350AFE0071AD79 /* Coda.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Coda.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		235266622F350B010071AD79 /* CodaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CodaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		2352666C2F350B010071AD79 /* CodaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CodaUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		235266782F350B010071AD79 /* Coda Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Coda Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		235266872F350B020071AD79 /* Coda Watch AppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Coda Watch AppTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		235266912F350B020071AD79 /* Coda Watch AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Coda Watch AppUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		235266552F350AFE0071AD79 /* Flick.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Flick.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		235266622F350B010071AD79 /* FlickTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FlickTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2352666C2F350B010071AD79 /* FlickUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FlickUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		235266782F350B010071AD79 /* Flick Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Flick Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		235266872F350B020071AD79 /* Flick Watch AppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Flick Watch AppTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		235266912F350B020071AD79 /* Flick Watch AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Flick Watch AppUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		235266C52F3517060071AD79 /* SharedTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedTypes.swift; sourceTree = "<group>"; };
 		235266C92F35188E0071AD79 /* WatchConnectivityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchConnectivityManager.swift; sourceTree = "<group>"; };
 		235266CD2F3519A10071AD79 /* iOSMediaManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSMediaManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		235266572F350AFE0071AD79 /* Coda */ = {
+		235266572F350AFE0071AD79 /* Flick */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = Coda;
+			path = Flick;
 			sourceTree = "<group>";
 		};
-		235266652F350B010071AD79 /* CodaTests */ = {
+		235266652F350B010071AD79 /* FlickTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = CodaTests;
+			path = FlickTests;
 			sourceTree = "<group>";
 		};
-		2352666F2F350B010071AD79 /* CodaUITests */ = {
+		2352666F2F350B010071AD79 /* FlickUITests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = CodaUITests;
+			path = FlickUITests;
 			sourceTree = "<group>";
 		};
-		2352667C2F350B010071AD79 /* Coda Watch App */ = {
+		2352667C2F350B010071AD79 /* Flick Watch App */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = "Coda Watch App";
+			path = "Flick Watch App";
 			sourceTree = "<group>";
 		};
-		2352668A2F350B020071AD79 /* Coda Watch AppTests */ = {
+		2352668A2F350B020071AD79 /* Flick Watch AppTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = "Coda Watch AppTests";
+			path = "Flick Watch AppTests";
 			sourceTree = "<group>";
 		};
-		235266942F350B020071AD79 /* Coda Watch AppUITests */ = {
+		235266942F350B020071AD79 /* Flick Watch AppUITests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = "Coda Watch AppUITests";
+			path = "Flick Watch AppUITests";
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -162,12 +162,12 @@
 			isa = PBXGroup;
 			children = (
 				235266C82F35186C0071AD79 /* CommunicationFramework */,
-				235266572F350AFE0071AD79 /* Coda */,
-				235266652F350B010071AD79 /* CodaTests */,
-				2352666F2F350B010071AD79 /* CodaUITests */,
-				2352667C2F350B010071AD79 /* Coda Watch App */,
-				2352668A2F350B020071AD79 /* Coda Watch AppTests */,
-				235266942F350B020071AD79 /* Coda Watch AppUITests */,
+				235266572F350AFE0071AD79 /* Flick */,
+				235266652F350B010071AD79 /* FlickTests */,
+				2352666F2F350B010071AD79 /* FlickUITests */,
+				2352667C2F350B010071AD79 /* Flick Watch App */,
+				2352668A2F350B020071AD79 /* Flick Watch AppTests */,
+				235266942F350B020071AD79 /* Flick Watch AppUITests */,
 				235266562F350AFE0071AD79 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -175,12 +175,12 @@
 		235266562F350AFE0071AD79 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				235266552F350AFE0071AD79 /* Coda.app */,
-				235266622F350B010071AD79 /* CodaTests.xctest */,
-				2352666C2F350B010071AD79 /* CodaUITests.xctest */,
-				235266782F350B010071AD79 /* Coda Watch App.app */,
-				235266872F350B020071AD79 /* Coda Watch AppTests.xctest */,
-				235266912F350B020071AD79 /* Coda Watch AppUITests.xctest */,
+				235266552F350AFE0071AD79 /* Flick.app */,
+				235266622F350B010071AD79 /* FlickTests.xctest */,
+				2352666C2F350B010071AD79 /* FlickUITests.xctest */,
+				235266782F350B010071AD79 /* Flick Watch App.app */,
+				235266872F350B020071AD79 /* Flick Watch AppTests.xctest */,
+				235266912F350B020071AD79 /* Flick Watch AppUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -198,9 +198,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		235266542F350AFE0071AD79 /* Coda */ = {
+		235266542F350AFE0071AD79 /* Flick */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2352669F2F350B020071AD79 /* Build configuration list for PBXNativeTarget "Coda" */;
+			buildConfigurationList = 2352669F2F350B020071AD79 /* Build configuration list for PBXNativeTarget "Flick" */;
 			buildPhases = (
 				235266512F350AFE0071AD79 /* Sources */,
 				235266522F350AFE0071AD79 /* Frameworks */,
@@ -213,18 +213,18 @@
 				2352667B2F350B010071AD79 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
-				235266572F350AFE0071AD79 /* Coda */,
+				235266572F350AFE0071AD79 /* Flick */,
 			);
-			name = Coda;
+			name = Flick;
 			packageProductDependencies = (
 			);
 			productName = Coda;
-			productReference = 235266552F350AFE0071AD79 /* Coda.app */;
+			productReference = 235266552F350AFE0071AD79 /* Flick.app */;
 			productType = "com.apple.product-type.application";
 		};
-		235266612F350B010071AD79 /* CodaTests */ = {
+		235266612F350B010071AD79 /* FlickTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 235266A22F350B020071AD79 /* Build configuration list for PBXNativeTarget "CodaTests" */;
+			buildConfigurationList = 235266A22F350B020071AD79 /* Build configuration list for PBXNativeTarget "FlickTests" */;
 			buildPhases = (
 				2352665E2F350B010071AD79 /* Sources */,
 				2352665F2F350B010071AD79 /* Frameworks */,
@@ -236,18 +236,18 @@
 				235266642F350B010071AD79 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
-				235266652F350B010071AD79 /* CodaTests */,
+				235266652F350B010071AD79 /* FlickTests */,
 			);
-			name = CodaTests;
+			name = FlickTests;
 			packageProductDependencies = (
 			);
 			productName = CodaTests;
-			productReference = 235266622F350B010071AD79 /* CodaTests.xctest */;
+			productReference = 235266622F350B010071AD79 /* FlickTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		2352666B2F350B010071AD79 /* CodaUITests */ = {
+		2352666B2F350B010071AD79 /* FlickUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 235266A52F350B020071AD79 /* Build configuration list for PBXNativeTarget "CodaUITests" */;
+			buildConfigurationList = 235266A52F350B020071AD79 /* Build configuration list for PBXNativeTarget "FlickUITests" */;
 			buildPhases = (
 				235266682F350B010071AD79 /* Sources */,
 				235266692F350B010071AD79 /* Frameworks */,
@@ -259,18 +259,18 @@
 				2352666E2F350B010071AD79 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
-				2352666F2F350B010071AD79 /* CodaUITests */,
+				2352666F2F350B010071AD79 /* FlickUITests */,
 			);
-			name = CodaUITests;
+			name = FlickUITests;
 			packageProductDependencies = (
 			);
 			productName = CodaUITests;
-			productReference = 2352666C2F350B010071AD79 /* CodaUITests.xctest */;
+			productReference = 2352666C2F350B010071AD79 /* FlickUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
-		235266772F350B010071AD79 /* Coda Watch App */ = {
+		235266772F350B010071AD79 /* Flick Watch App */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2352669B2F350B020071AD79 /* Build configuration list for PBXNativeTarget "Coda Watch App" */;
+			buildConfigurationList = 2352669B2F350B020071AD79 /* Build configuration list for PBXNativeTarget "Flick Watch App" */;
 			buildPhases = (
 				235266742F350B010071AD79 /* Sources */,
 				235266752F350B010071AD79 /* Frameworks */,
@@ -281,18 +281,18 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				2352667C2F350B010071AD79 /* Coda Watch App */,
+				2352667C2F350B010071AD79 /* Flick Watch App */,
 			);
-			name = "Coda Watch App";
+			name = "Flick Watch App";
 			packageProductDependencies = (
 			);
 			productName = "Coda Watch App";
-			productReference = 235266782F350B010071AD79 /* Coda Watch App.app */;
+			productReference = 235266782F350B010071AD79 /* Flick Watch App.app */;
 			productType = "com.apple.product-type.application";
 		};
-		235266862F350B020071AD79 /* Coda Watch AppTests */ = {
+		235266862F350B020071AD79 /* Flick Watch AppTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 235266A82F350B020071AD79 /* Build configuration list for PBXNativeTarget "Coda Watch AppTests" */;
+			buildConfigurationList = 235266A82F350B020071AD79 /* Build configuration list for PBXNativeTarget "Flick Watch AppTests" */;
 			buildPhases = (
 				235266832F350B020071AD79 /* Sources */,
 				235266842F350B020071AD79 /* Frameworks */,
@@ -304,18 +304,18 @@
 				235266892F350B020071AD79 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
-				2352668A2F350B020071AD79 /* Coda Watch AppTests */,
+				2352668A2F350B020071AD79 /* Flick Watch AppTests */,
 			);
-			name = "Coda Watch AppTests";
+			name = "Flick Watch AppTests";
 			packageProductDependencies = (
 			);
 			productName = "Coda Watch AppTests";
-			productReference = 235266872F350B020071AD79 /* Coda Watch AppTests.xctest */;
+			productReference = 235266872F350B020071AD79 /* Flick Watch AppTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		235266902F350B020071AD79 /* Coda Watch AppUITests */ = {
+		235266902F350B020071AD79 /* Flick Watch AppUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 235266AB2F350B020071AD79 /* Build configuration list for PBXNativeTarget "Coda Watch AppUITests" */;
+			buildConfigurationList = 235266AB2F350B020071AD79 /* Build configuration list for PBXNativeTarget "Flick Watch AppUITests" */;
 			buildPhases = (
 				2352668D2F350B020071AD79 /* Sources */,
 				2352668E2F350B020071AD79 /* Frameworks */,
@@ -327,13 +327,13 @@
 				235266932F350B020071AD79 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
-				235266942F350B020071AD79 /* Coda Watch AppUITests */,
+				235266942F350B020071AD79 /* Flick Watch AppUITests */,
 			);
-			name = "Coda Watch AppUITests";
+			name = "Flick Watch AppUITests";
 			packageProductDependencies = (
 			);
 			productName = "Coda Watch AppUITests";
-			productReference = 235266912F350B020071AD79 /* Coda Watch AppUITests.xctest */;
+			productReference = 235266912F350B020071AD79 /* Flick Watch AppUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -370,7 +370,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 235266502F350AFE0071AD79 /* Build configuration list for PBXProject "Coda" */;
+			buildConfigurationList = 235266502F350AFE0071AD79 /* Build configuration list for PBXProject "Flick" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -384,12 +384,12 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				235266542F350AFE0071AD79 /* Coda */,
-				235266612F350B010071AD79 /* CodaTests */,
-				2352666B2F350B010071AD79 /* CodaUITests */,
-				235266772F350B010071AD79 /* Coda Watch App */,
-				235266862F350B020071AD79 /* Coda Watch AppTests */,
-				235266902F350B020071AD79 /* Coda Watch AppUITests */,
+				235266542F350AFE0071AD79 /* Flick */,
+				235266612F350B010071AD79 /* FlickTests */,
+				2352666B2F350B010071AD79 /* FlickUITests */,
+				235266772F350B010071AD79 /* Flick Watch App */,
+				235266862F350B020071AD79 /* Flick Watch AppTests */,
+				235266902F350B020071AD79 /* Flick Watch AppUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -492,27 +492,27 @@
 /* Begin PBXTargetDependency section */
 		235266642F350B010071AD79 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 235266542F350AFE0071AD79 /* Coda */;
+			target = 235266542F350AFE0071AD79 /* Flick */;
 			targetProxy = 235266632F350B010071AD79 /* PBXContainerItemProxy */;
 		};
 		2352666E2F350B010071AD79 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 235266542F350AFE0071AD79 /* Coda */;
+			target = 235266542F350AFE0071AD79 /* Flick */;
 			targetProxy = 2352666D2F350B010071AD79 /* PBXContainerItemProxy */;
 		};
 		2352667B2F350B010071AD79 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 235266772F350B010071AD79 /* Coda Watch App */;
+			target = 235266772F350B010071AD79 /* Flick Watch App */;
 			targetProxy = 2352667A2F350B010071AD79 /* PBXContainerItemProxy */;
 		};
 		235266892F350B020071AD79 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 235266772F350B010071AD79 /* Coda Watch App */;
+			target = 235266772F350B010071AD79 /* Flick Watch App */;
 			targetProxy = 235266882F350B020071AD79 /* PBXContainerItemProxy */;
 		};
 		235266932F350B020071AD79 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 235266772F350B010071AD79 /* Coda Watch App */;
+			target = 235266772F350B010071AD79 /* Flick Watch App */;
 			targetProxy = 235266922F350B020071AD79 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -649,7 +649,7 @@
 				INFOPLIST_KEY_CFBundleDisplayName = Coda;
 				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "Coda uses Health capabilites to process gestures";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = wildcat.codaplayback.Coda;
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = wildcat.codaplayback.Flick;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -685,7 +685,7 @@
 				INFOPLIST_KEY_CFBundleDisplayName = Coda;
 				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "Coda uses Health capabilites to process gestures";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = wildcat.codaplayback.Coda;
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = wildcat.codaplayback.Flick;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -801,7 +801,7 @@
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Coda.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Coda";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Flick.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Flick";
 			};
 			name = Debug;
 		};
@@ -824,7 +824,7 @@
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Coda.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Coda";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Flick.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Flick";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -892,7 +892,7 @@
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Coda Watch App.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Coda Watch App";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Flick Watch App.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Flick Watch App";
 				WATCHOS_DEPLOYMENT_TARGET = 26.2;
 			};
 			name = Debug;
@@ -915,7 +915,7 @@
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Coda Watch App.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Coda Watch App";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Flick Watch App.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Flick Watch App";
 				VALIDATE_PRODUCT = YES;
 				WATCHOS_DEPLOYMENT_TARGET = 26.2;
 			};
@@ -969,7 +969,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		235266502F350AFE0071AD79 /* Build configuration list for PBXProject "Coda" */ = {
+		235266502F350AFE0071AD79 /* Build configuration list for PBXProject "Flick" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				235266992F350B020071AD79 /* Debug */,
@@ -978,7 +978,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2352669B2F350B020071AD79 /* Build configuration list for PBXNativeTarget "Coda Watch App" */ = {
+		2352669B2F350B020071AD79 /* Build configuration list for PBXNativeTarget "Flick Watch App" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2352669C2F350B020071AD79 /* Debug */,
@@ -987,7 +987,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2352669F2F350B020071AD79 /* Build configuration list for PBXNativeTarget "Coda" */ = {
+		2352669F2F350B020071AD79 /* Build configuration list for PBXNativeTarget "Flick" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				235266A02F350B020071AD79 /* Debug */,
@@ -996,7 +996,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		235266A22F350B020071AD79 /* Build configuration list for PBXNativeTarget "CodaTests" */ = {
+		235266A22F350B020071AD79 /* Build configuration list for PBXNativeTarget "FlickTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				235266A32F350B020071AD79 /* Debug */,
@@ -1005,7 +1005,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		235266A52F350B020071AD79 /* Build configuration list for PBXNativeTarget "CodaUITests" */ = {
+		235266A52F350B020071AD79 /* Build configuration list for PBXNativeTarget "FlickUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				235266A62F350B020071AD79 /* Debug */,
@@ -1014,7 +1014,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		235266A82F350B020071AD79 /* Build configuration list for PBXNativeTarget "Coda Watch AppTests" */ = {
+		235266A82F350B020071AD79 /* Build configuration list for PBXNativeTarget "Flick Watch AppTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				235266A92F350B020071AD79 /* Debug */,
@@ -1023,7 +1023,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		235266AB2F350B020071AD79 /* Build configuration list for PBXNativeTarget "Coda Watch AppUITests" */ = {
+		235266AB2F350B020071AD79 /* Build configuration list for PBXNativeTarget "Flick Watch AppUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				235266AC2F350B020071AD79 /* Debug */,
