@@ -1,7 +1,7 @@
 **README.md**
 
-# Coda
-Coda is the second version of a gesture-based music controller built for Apple Watch. The goal is to remove the need to open your device or fumble with tiny buttons when you just want to skip a song.
+# Flick
+Flick is the second version of a gesture-based music controller built for Apple Watch. The goal is to remove the need to open your device or fumble with tiny buttons when you just want to skip a song.
 
 ## How it works
 Use three simple wrist gestures control your media:
@@ -65,4 +65,4 @@ Want to test it yourself? Follow the steps below.
 
 ---
 
-Coda is made for people who don't want to break their flow just to skip a song.
+Flick is made for people who don't want to break their flow just to skip a song.
