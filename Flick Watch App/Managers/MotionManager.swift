@@ -150,15 +150,15 @@ class MotionManager: NSObject, ObservableObject {
             
             if shouldReverse {
                 if rotationRate > 0 {
-                    triggerGesture(.previousTrack)
-                } else {
                     triggerGesture(.nextTrack)
+                } else {
+                    triggerGesture(.previousTrack)
                 }
             } else {
                 if rotationRate > 0 {
-                    triggerGesture(.nextTrack)
-                } else {
                     triggerGesture(.previousTrack)
+                } else {
+                    triggerGesture(.nextTrack)
                 }
             }
         }
