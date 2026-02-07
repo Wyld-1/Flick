@@ -1,6 +1,6 @@
 //
 //  SharedTypes.swift
-//  Coda
+//  Flick
 //
 //  Shared between iOS and watchOS targets
 //
@@ -19,11 +19,13 @@ struct AppSettings: Codable {
     var isTapEnabled: Bool
     var isFlickDirectionReversed: Bool
     var isTutorialCompleted: Bool
+    var useShortcutsForPlayback: Bool  // ← NEW
     
     static let `default` = AppSettings(
         isTapEnabled: false,
         isFlickDirectionReversed: false,
-        isTutorialCompleted: false
+        isTutorialCompleted: false,
+        useShortcutsForPlayback: false  // ← Default to Apple Music API
     )
 }
 

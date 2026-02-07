@@ -45,7 +45,7 @@ struct MainView: View {
                         .symbolEffect(.breathe.plain.wholeSymbol)
                         .foregroundStyle(.orange)
                     
-                    Text("Coda")
+                    Text("Flick")
                         .foregroundColor(Color(red: 96/255,
                                                     green: 0/255,
                                                     blue: 247/255))
@@ -71,6 +71,9 @@ struct MainView: View {
         }
         .sheet(isPresented: $showSettings) {
             SettingsView()
+                .onAppear {
+                    triggerHaptic()
+                }
         }
         .onReceive(NotificationCenter.default.publisher(for: NSNotification.Name("CommandReceived"))) { notification in
             if let command = notification.object as? MediaCommand {
@@ -78,6 +81,10 @@ struct MainView: View {
                 commandTimestamp = Date()
             }
         }
+    }
+    private func triggerHaptic() {
+        let generator = UIImpactFeedbackGenerator(style: .medium)
+        generator.impactOccurred()
     }
     
     private func commandIcon(for command: MediaCommand) -> String {

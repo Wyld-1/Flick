@@ -1,12 +1,13 @@
 //
 //  iOSMediaManager.swift
-//  Coda
+//  Flick
 //
 //  Handles media playback on iPhone
 //
 
 import Foundation
 import MediaPlayer
+import UIKit
 import Combine
 
 class iOSMediaManager: ObservableObject {
@@ -14,7 +15,14 @@ class iOSMediaManager: ObservableObject {
     
     static let shared = iOSMediaManager()
     
-    private let player = MPMusicPlayerController.systemMusicPlayer
+    private let appleMusicPlayer = MPMusicPlayerController.systemMusicPlayer
+    
+    // Shortcut names
+    private let shortcutNames = [
+        "nextTrack": "FlickNext",
+        "previousTrack": "FlickPrevious",
+        "playPause": "FlickPlayPause"
+    ]
     
     private init() {
         print("📱 iOS MediaManager initialized")
@@ -23,23 +31,80 @@ class iOSMediaManager: ObservableObject {
     func handleCommand(_ command: MediaCommand) {
         print("📱 Handling command: \(command.rawValue)")
         
-        switch command {
-        case .nextTrack:
-            player.skipToNextItem()
-        case .previousTrack:
-            player.skipToPreviousItem()
-        case .playPause:
-            if player.playbackState == .playing {
-                player.pause()
-            } else {
-                player.play()
-            }
+        // Check which playback method to use
+        let settings = SharedSettings.load()
+        
+        if settings.useShortcutsForPlayback {
+            handleCommandViaShortcuts(command)
+        } else {
+            handleCommandViaAppleMusic(command)
         }
+        
+        // Haptic feedback
+        let generator = UIImpactFeedbackGenerator(style: .light)
+        generator.impactOccurred()
         
         // Notify UI
         NotificationCenter.default.post(
             name: NSNotification.Name("CommandReceived"),
             object: command
         )
+    }
+    
+    // MARK: - Apple Music API Method
+    private func handleCommandViaAppleMusic(_ command: MediaCommand) {
+        print("📱 Using Apple Music API")
+        
+        switch command {
+        case .nextTrack:
+            appleMusicPlayer.skipToNextItem()
+        case .previousTrack:
+            appleMusicPlayer.skipToPreviousItem()
+        case .playPause:
+            if appleMusicPlayer.playbackState == .playing {
+                appleMusicPlayer.pause()
+            } else {
+                appleMusicPlayer.play()
+            }
+        }
+    }
+    
+    // MARK: - Shortcuts Method
+    private func handleCommandViaShortcuts(_ command: MediaCommand) {
+        print("📱 Using Shortcuts")
+        
+        let shortcutName: String
+        switch command {
+        case .nextTrack:
+            shortcutName = shortcutNames["nextTrack"]!
+        case .previousTrack:
+            shortcutName = shortcutNames["previousTrack"]!
+        case .playPause:
+            shortcutName = shortcutNames["playPause"]!
+        }
+        
+        runShortcut(named: shortcutName)
+    }
+    
+    private func runShortcut(named name: String) {
+        guard let encodedName = name.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
+              let url = URL(string: "shortcuts://run-shortcut?name=\(encodedName)") else {
+            print("❌ Invalid shortcut URL for '\(name)'")
+            return
+        }
+        
+        UIApplication.shared.open(url, options: [:]) { success in
+            if success {
+                print("✅ Shortcut '\(name)' triggered")
+            } else {
+                print("❌ Failed to trigger shortcut '\(name)' - does it exist?")
+            }
+        }
+    }
+    
+    // Check if Shortcuts app is available
+    func canUseShortcuts() -> Bool {
+        guard let url = URL(string: "shortcuts://") else { return false }
+        return UIApplication.shared.canOpenURL(url)
     }
 }

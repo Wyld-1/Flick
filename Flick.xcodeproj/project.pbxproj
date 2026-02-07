@@ -13,6 +13,7 @@
 		235266CB2F35195D0071AD79 /* WatchConnectivityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235266C92F35188E0071AD79 /* WatchConnectivityManager.swift */; };
 		235266CC2F35196A0071AD79 /* SharedTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235266C52F3517060071AD79 /* SharedTypes.swift */; };
 		235266CF2F3519A60071AD79 /* iOSMediaManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235266CD2F3519A10071AD79 /* iOSMediaManager.swift */; };
+		23C6BC4E2F37B938003075DD /* FlickIntents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23C6BC4C2F37B938003075DD /* FlickIntents.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,11 +78,25 @@
 		235266C52F3517060071AD79 /* SharedTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedTypes.swift; sourceTree = "<group>"; };
 		235266C92F35188E0071AD79 /* WatchConnectivityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchConnectivityManager.swift; sourceTree = "<group>"; };
 		235266CD2F3519A10071AD79 /* iOSMediaManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSMediaManager.swift; sourceTree = "<group>"; };
+		23C6BC4C2F37B938003075DD /* FlickIntents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlickIntents.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		23E526452F36B45900F22937 /* Exceptions for "Flick" folder in "Flick" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 235266542F350AFE0071AD79 /* Flick */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		235266572F350AFE0071AD79 /* Flick */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				23E526452F36B45900F22937 /* Exceptions for "Flick" folder in "Flick" target */,
+			);
 			path = Flick;
 			sourceTree = "<group>";
 		};
@@ -188,6 +203,7 @@
 		235266C82F35186C0071AD79 /* CommunicationFramework */ = {
 			isa = PBXGroup;
 			children = (
+				23C6BC4C2F37B938003075DD /* FlickIntents.swift */,
 				235266CD2F3519A10071AD79 /* iOSMediaManager.swift */,
 				235266C92F35188E0071AD79 /* WatchConnectivityManager.swift */,
 				235266C52F3517060071AD79 /* SharedTypes.swift */,
@@ -446,6 +462,7 @@
 			files = (
 				235266C62F3517110071AD79 /* SharedTypes.swift in Sources */,
 				235266CF2F3519A60071AD79 /* iOSMediaManager.swift in Sources */,
+				23C6BC4E2F37B938003075DD /* FlickIntents.swift in Sources */,
 				235266CA2F35195D0071AD79 /* WatchConnectivityManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -718,13 +735,14 @@
 				DEVELOPMENT_TEAM = PQW4KRLW78;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Flick/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Flick;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.music";
+				INFOPLIST_KEY_NSAppleMusicUsageDescription = "Flick needs playback control permission";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -755,14 +773,15 @@
 				DEVELOPMENT_TEAM = PQW4KRLW78;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Flick/Info.plist;
 				"INFOPLIST_FILE[sdk=*]" = "";
 				INFOPLIST_KEY_CFBundleDisplayName = Flick;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.music";
+				INFOPLIST_KEY_NSAppleMusicUsageDescription = "Flick needs playback control permission";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

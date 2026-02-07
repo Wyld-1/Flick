@@ -31,11 +31,15 @@ struct FLickApp: App {
     
     var body: some Scene {
         WindowGroup {
+            /*
             if !appState.settings.isTutorialCompleted {
                 WelcomeView()
             } else {
                 MainView()
-            }
+             }
+             */
+            
+            MainView()
         }
     }
 }

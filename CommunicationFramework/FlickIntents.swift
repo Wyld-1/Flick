@@ -1,14 +1,6 @@
 //
-//  NextTrackIntent.swift
+//  FlickIntents.swift
 //  Flick
-//
-//  Created by Liam Lefohn on 2/7/26.
-//
-
-
-//
-//  CodaIntents.swift
-//  Coda
 //
 //  App Intents for native Shortcuts integration
 //
