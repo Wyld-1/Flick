@@ -315,7 +315,7 @@ struct WatchConnectionHelpView: View {
                         
                         // MARK: - Footer (Contact vs Troubleshooting)
                         
-                        if true {
+                        if isReachable {
                             Link(destination: URL(string: "https://forms.gle/RSBVKFks8jatoQLS8")!) {
                                 HStack {
                                     Text("Connectivity issues? Contact Flick.")
