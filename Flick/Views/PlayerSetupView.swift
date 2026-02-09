@@ -55,6 +55,8 @@ struct InitialSetupView: View {
                             withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
                                 useShortcuts = false
                             }
+                            let generator = UIImpactFeedbackGenerator(style: .light)
+                            generator.impactOccurred()
                         }
                         
                         // Spotify / Other (Shortcuts)
@@ -68,6 +70,8 @@ struct InitialSetupView: View {
                             withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
                                 useShortcuts = true
                             }
+                            let generator = UIImpactFeedbackGenerator(style: .light)
+                            generator.impactOccurred()
                         }
                     }
                     .frame(height: 220)
@@ -105,8 +109,9 @@ struct InitialSetupView: View {
                             .font(.headline)
                             .fontWeight(.bold)
                             .frame(maxWidth: .infinity)
+                            .foregroundStyle(.black)
                     }
-                    .buttonStyle(VividGlassButtonStyle())
+                    .buttonStyle(VividGlassButtonStyle()) // Uses shared style
                     .padding(.horizontal, 30)
                     .padding(.bottom, 50)
                 }
@@ -114,10 +119,9 @@ struct InitialSetupView: View {
             // The "Push" Navigation Logic
             .navigationDestination(isPresented: $navigateToShortcuts) {
                 ShortcutsSetupView()
-                    .navigationBarBackButtonHidden(true) // Forces them to complete or use view controls
+                    .navigationBarBackButtonHidden(true)
             }
         }
-        // Logic to detect when they return from Shortcuts Setup (Finished or Skipped)
         .onAppear {
             // If they just finished the setup loop, complete the onboarding
             if useShortcuts && UserDefaults.standard.bool(forKey: "shortcutsConfigured") {
@@ -127,7 +131,7 @@ struct InitialSetupView: View {
     }
 }
 
-// MARK: - Subviews & Styles
+// MARK: - Subviews
 
 struct ServiceCard: View {
     var isSelected: Bool
@@ -138,11 +142,7 @@ struct ServiceCard: View {
     var action: () -> Void
     
     var body: some View {
-        Button(action: {
-            let generator = UIImpactFeedbackGenerator(style: .light)
-            generator.impactOccurred()
-            action()
-        }) {
+        Button(action: action) {
             ZStack {
                 // Card Background
                 RoundedRectangle(cornerRadius: 24)
@@ -167,7 +167,7 @@ struct ServiceCard: View {
                         Image(iconName)
                             .resizable()
                             .aspectRatio(contentMode: .fit)
-                            .frame(width: 50, height: 50) // Tweaked size for better fit
+                            .frame(width: 50, height: 50)
                             .shadow(color: .black.opacity(0.3), radius: 5)
                     }
                     
@@ -186,7 +186,7 @@ struct ServiceCard: View {
                 .padding()
             }
         }
-        .buttonStyle(ScaleButtonStyle())
+        .buttonStyle(ScaleButtonStyle()) // Uses shared style
     }
 }
 
