@@ -22,7 +22,7 @@ struct FlickApp: App {
                         .transition(.opacity)
                     
                 case .playbackChoice:
-                    InitialSetupView()
+                    PlayerSetupView()
                         .transition(.move(edge: .trailing))
                     
                 case .waitingForWatch:

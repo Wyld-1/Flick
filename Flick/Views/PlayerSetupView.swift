@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct InitialSetupView: View {
+struct PlayerSetupView: View {
     @EnvironmentObject var appState: AppStateManager
     @State private var useShortcuts = false // false = Apple Music, true = Others
     @State private var navigateToShortcuts = false // Controls the push navigation
@@ -191,6 +191,6 @@ struct ServiceCard: View {
 }
 
 #Preview {
-    InitialSetupView()
+    PlayerSetupView()
         .environmentObject(AppStateManager())
 }

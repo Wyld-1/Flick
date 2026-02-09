@@ -117,8 +117,9 @@ struct ShortcutsSetupView: View {
                             .font(.headline)
                             .fontWeight(.bold)
                             .frame(maxWidth: .infinity)
+                            .foregroundStyle(.black)
                     }
-                    .buttonStyle(VividGlassButtonStyle())
+                    .buttonStyle(VividGlassButtonStyle()) // Uses shared style
                     .padding(.horizontal, 24)
                     .padding(.bottom, 20)
                 }
@@ -228,36 +229,6 @@ struct StepCardView: View {
     }
 }
 
-// MARK: - Styles
-
-struct VividGlassButtonStyle: ButtonStyle {
-    func makeBody(configuration: Configuration) -> some View {
-        configuration.label
-            .padding(.vertical, 18)
-            .padding(.horizontal, 24)
-            .background(Color.orange)
-            .clipShape(Capsule())
-            .overlay(
-                Capsule()
-                    .stroke(
-                        LinearGradient(
-                            stops: [
-                                .init(color: .white.opacity(0.5), location: 0),
-                                .init(color: .white.opacity(0.0), location: 0.5),
-                                .init(color: .white.opacity(0.2), location: 1)
-                            ],
-                            startPoint: .topLeading,
-                            endPoint: .bottomTrailing
-                        ),
-                        lineWidth: 1.5
-                    )
-            )
-            //.shadow(color: .orange.opacity(0.4), radius: 20, x: 0, y: 10) // Orange Glow
-            .scaleEffect(configuration.isPressed ? 0.95 : 1)
-            .animation(.spring(response: 0.3), value: configuration.isPressed)
-    }
-}
-
 struct SetupStep {
     let title: String
     let mainIcon: String
@@ -268,4 +239,5 @@ struct SetupStep {
 
 #Preview {
     ShortcutsSetupView()
+        .environmentObject(AppStateManager())
 }

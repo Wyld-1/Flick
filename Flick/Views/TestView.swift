@@ -65,7 +65,7 @@ struct TestView: View {
                     }
                 }
                 .foregroundStyle(.primary)
-                .buttonStyle(.scaleEffect)
+                .buttonStyle(.scaleEffect) // Uses shared extension
             }
         }
         .presentationDetents([.fraction(0.25)])
@@ -105,10 +105,6 @@ struct TestView: View {
         let generator = UIImpactFeedbackGenerator(style: .medium)
         generator.impactOccurred()
     }
-}
-
-extension ButtonStyle where Self == ScaleButtonStyle {
-    static var scaleEffect: ScaleButtonStyle { ScaleButtonStyle() }
 }
 
 #Preview {

@@ -15,7 +15,7 @@ struct WelcomeView: View {
             // Background
             Color.black.ignoresSafeArea()
             
-            // Subtle ambient glow to make the orange pop
+            // Subtle ambient glow
             RadialGradient(
                 gradient: Gradient(colors: [.orange.opacity(0.1), .clear]),
                 center: .center,
@@ -28,14 +28,13 @@ struct WelcomeView: View {
                 Spacer()
                 
                 // Play icon
-                Image(systemName: "play") // Switched to .fill for more weight
+                Image(systemName: "play")
                     .font(.system(size: 215))
                     .foregroundStyle(.orange)
                     .symbolEffect(.breathe.plain.wholeSymbol, options: .repeat(.continuous))
                     .shadow(color: .orange.opacity(0.3), radius: 40)
                 
                 Spacer()
-                
                 
                 // Text content
                 VStack(spacing: 12) {
@@ -52,7 +51,7 @@ struct WelcomeView: View {
                 
                 Spacer()
                 
-                // Bright orange Continue button (Matching ShortcutsSetupView)
+                // Bright orange Continue button
                 Button(action: {
                     let generator = UIImpactFeedbackGenerator(style: .medium)
                     generator.impactOccurred()
@@ -64,8 +63,9 @@ struct WelcomeView: View {
                         .font(.headline)
                         .fontWeight(.bold)
                         .frame(maxWidth: .infinity)
+                        .foregroundStyle(.black)
                 }
-                .buttonStyle(VividGlassButtonStyle()) // Using the custom style from Shortcuts
+                .buttonStyle(VividGlassButtonStyle()) // Uses shared style
                 .padding(.horizontal, 30)
                 .padding(.bottom, 50)
             }
