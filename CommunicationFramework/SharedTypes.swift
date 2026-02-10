@@ -21,13 +21,15 @@ struct AppSettings: Codable {
     var isTutorialCompleted: Bool
     var useShortcutsForPlayback: Bool
     var hasCompletedInitialSetup: Bool
+    var appVersion: String
     
     static let `default` = AppSettings(
         isTapEnabled: false,
         isFlickDirectionReversed: false,
         isTutorialCompleted: false,
         useShortcutsForPlayback: false,
-        hasCompletedInitialSetup: false
+        hasCompletedInitialSetup: false,
+        appVersion: "1.1"
     )
 }
 

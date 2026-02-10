@@ -46,8 +46,8 @@ struct MainView: View {
                 .contentShape(Rectangle())
                 .onTapGesture {
                     if appState.isTapEnabled {
+                        WatchConnectivityManager.shared.sendMediaCommand(.playPause)
                         WKInterfaceDevice.current().play(.click)
-                        mediaManager.handleGesture(.playPause)
                         withAnimation {
                             lastGesture = .playPause
                         }
@@ -88,7 +88,6 @@ struct MainView: View {
         .onChange(of: motionManager.lastGesture) { oldValue, newValue in
             withAnimation {
                 lastGesture = newValue
-                mediaManager.handleGesture(newValue)
             }
         }
     }

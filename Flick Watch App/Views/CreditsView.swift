@@ -13,7 +13,7 @@ struct CreditsView: View {
     var body: some View {
         ScrollView {
             VStack(spacing: 20) {
-                Text("Flick 1.0")
+                Text("Flick 1.1")
                     .multilineTextAlignment(.center)
                     .foregroundStyle(.secondary)
                 
