@@ -14,7 +14,6 @@ struct SettingsView: View {
     
     @Environment(\.dismiss) var dismiss
     @State private var settings = SharedSettings.load()
-    @State private var appVersion = SharedSettings.load()
     @State private var showShortcutsSetup = false
     @State private var showTestControls = false
     
@@ -112,8 +111,7 @@ struct SettingsView: View {
                             color: .purple,
                             title: "Version"
                         ) {
-                            Text("1.1")
-                                .fontDesign(.monospaced)
+                            Text(AppConstants.appVersion)
                                 .foregroundStyle(.gray)
                         }
                     }

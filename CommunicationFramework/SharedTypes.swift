@@ -7,6 +7,11 @@
 
 import Foundation
 
+// MARK: - Constants
+struct AppConstants {
+    static let appVersion = "1.1"
+}
+
 // Commands that can be sent from Watch to iPhone
 enum MediaCommand: String, Codable {
     case nextTrack
@@ -21,15 +26,13 @@ struct AppSettings: Codable {
     var isTutorialCompleted: Bool
     var useShortcutsForPlayback: Bool
     var hasCompletedInitialSetup: Bool
-    var appVersion: String
     
     static let `default` = AppSettings(
         isTapEnabled: false,
         isFlickDirectionReversed: false,
         isTutorialCompleted: false,
         useShortcutsForPlayback: false,
-        hasCompletedInitialSetup: false,
-        appVersion: "1.1"
+        hasCompletedInitialSetup: false
     )
 }
 
