@@ -654,9 +654,9 @@
 				DEVELOPMENT_TEAM = PQW4KRLW78;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "Coda-Watch-App-Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = Coda;
-				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "Coda uses Health capabilites to process gestures";
+				INFOPLIST_FILE = "Flick-Watch-App-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = Flick;
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "Flick uses Health capabilites to process gestures";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = wildcat.flickplayback.Flick;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -690,9 +690,9 @@
 				DEVELOPMENT_TEAM = PQW4KRLW78;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "Coda-Watch-App-Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = Coda;
-				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "Coda uses Health capabilites to process gestures";
+				INFOPLIST_FILE = "Flick-Watch-App-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = Flick;
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "Flick uses Health capabilites to process gestures";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = wildcat.flickplayback.Flick;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -734,7 +734,8 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -773,7 +774,8 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

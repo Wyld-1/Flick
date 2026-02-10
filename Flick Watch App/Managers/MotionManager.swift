@@ -181,12 +181,34 @@ class MotionManager: NSObject, ObservableObject {
     }
     
     private func triggerGesture(_ gesture: GestureType) {
+        // 1. Update Local State
         lastGesture = gesture
         lastGestureTime = Date()
         
-        // Immediate haptic when gesture detected
+        // 2. Local Haptic Feedback (So you know the watch felt it)
         WKInterfaceDevice.current().play(.click)
         
+        // 3. Map gesture to command and SEND IT 🚀
+        var commandToSend: MediaCommand?
+        
+        switch gesture {
+        case .nextTrack:
+            commandToSend = .nextTrack
+        case .previousTrack:
+            commandToSend = .previousTrack
+        case .playPause:
+            commandToSend = .playPause
+        case .none:
+            commandToSend = nil
+        }
+        
+        // Actually sends to iPhone
+        if let command = commandToSend {
+            print("⌚️ Gesture detected: \(gesture). Sending to iPhone...")
+            WatchConnectivityManager.shared.sendMediaCommand(command)
+        }
+        
+        // 4. Reset state after cooldown
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { [weak self] in
             self?.lastGesture = .none
         }
