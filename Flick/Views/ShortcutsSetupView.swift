@@ -124,8 +124,7 @@ struct ShortcutsSetupView: View {
     }
     
     private func handleNextButton() {
-        let generator = UIImpactFeedbackGenerator(style: .medium)
-        generator.impactOccurred()
+        appState.triggerHaptic()
         
         if isLastStep {
             UserDefaults.standard.set(true, forKey: "shortcutsConfigured")

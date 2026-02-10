@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct MainView: View {
+    @EnvironmentObject var appState: AppStateManager
     @State private var showSettings = false
     @State private var showHelpSheet = false
     @State private var lastCommand: MediaCommand = .playPause
@@ -60,8 +61,7 @@ struct MainView: View {
                     
                     // Settings button
                     Button(action: {
-                        let generator = UIImpactFeedbackGenerator(style: .medium)
-                        generator.impactOccurred()
+                        appState.triggerHaptic()
                         showSettings = true
                     }) {
                         Image(systemName: "gearshape.fill")
@@ -100,7 +100,7 @@ struct MainView: View {
         // Diagnostics sheet
         .sheet(isPresented: $showHelpSheet) {
             WatchConnectionHelpView()
-                .presentationDetents([.fraction(0.3), .large])
+                .presentationDetents([.height(230), .large])
                 .presentationDragIndicator(.visible)
         }
         

@@ -31,12 +31,13 @@ struct ContinueOnWatchView: View {
                 HStack {
                     Spacer()
                     Button(action: {
+                        appState.triggerHaptic()
                         var settings = SharedSettings.load()
                         settings.isTutorialCompleted = true
                         SharedSettings.save(settings)
                         appState.currentState = .welcome
                     }) {
-                        Text("DEBUG: RESTART")
+                        Text("RESTART")
                             .font(.caption2)
                             .fontWeight(.bold)
                             .foregroundStyle(.green)
@@ -51,14 +52,16 @@ struct ContinueOnWatchView: View {
                     
                     Spacer()
                     Spacer()
+                    Spacer()
                     
                     Button(action: {
+                        appState.triggerHaptic()
                         var settings = SharedSettings.load()
                         settings.isTutorialCompleted = true
                         SharedSettings.save(settings)
                         appState.goToMain()
                     }) {
-                        Text("DEBUG: SKIP TO MAIN")
+                        Text("SKIP TO MAIN")
                             .font(.caption2)
                             .fontWeight(.bold)
                             .foregroundStyle(.red)
@@ -73,7 +76,6 @@ struct ContinueOnWatchView: View {
                     Spacer()
                 }
                 .padding(.top, 60)
-                .padding(.leading, 20)
                 Spacer()
             }
             .zIndex(10)
@@ -83,17 +85,17 @@ struct ContinueOnWatchView: View {
                 Spacer()
                 
                 ZStack {
-                    // Ripples
-                    ForEach(0..<3) { index in
+                    // Ripple
+                    ForEach(0..<1) { index in
                         Circle()
-                            .stroke(Color.orange.opacity(0.3), lineWidth: 6)
+                            .stroke(.orange, lineWidth: 6)
                             .frame(width: 120, height: 120)
                             .scaleEffect(isAnimating ? 2.3 : 1.3)
                             .opacity(isAnimating ? 0 : 0.3)
+                            .blur(radius: isAnimating ? 8 : 2) // Blur increases as it expands
                             .animation(
                                 .easeOut(duration: 2.3)
-                                .repeatForever(autoreverses: false)
-                                .delay(Double(index) * 0.3), // Stagger the ripples
+                                .repeatForever(autoreverses: false),
                                 value: isAnimating
                             )
                     }
@@ -142,7 +144,7 @@ struct ContinueOnWatchView: View {
         }
         .sheet(isPresented: $showHelpSheet) {
             WatchConnectionHelpView()
-                .presentationDetents([.fraction(0.3), .large])
+                .presentationDetents([.height(230), .large])
                 .presentationDragIndicator(.visible)
         }
         .onAppear {

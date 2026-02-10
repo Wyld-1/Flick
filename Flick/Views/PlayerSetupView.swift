@@ -54,8 +54,7 @@ struct PlayerSetupView: View {
                         withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
                             useShortcuts = false
                         }
-                        let generator = UIImpactFeedbackGenerator(style: .light)
-                        generator.impactOccurred()
+                        appState.triggerHaptic()
                     }
                     
                     // Spotify / Other (Shortcuts)
@@ -69,8 +68,7 @@ struct PlayerSetupView: View {
                         withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
                             useShortcuts = true
                         }
-                        let generator = UIImpactFeedbackGenerator(style: .light)
-                        generator.impactOccurred()
+                        appState.triggerHaptic()
                     }
                 }
                 .frame(height: 220)
@@ -93,8 +91,7 @@ struct PlayerSetupView: View {
                 
                 // Continue Button
                 Button(action: {
-                    let generator = UIImpactFeedbackGenerator(style: .medium)
-                    generator.impactOccurred()
+                    appState.triggerHaptic()
                     
                     if useShortcuts {
                         // Show shortcuts setup as fullScreenCover

@@ -7,6 +7,7 @@
 
 import Foundation
 import Combine
+import UIKit
 
 enum AppState {
     case welcome
@@ -62,5 +63,10 @@ class AppStateManager: ObservableObject {
     
     func goToMain() {
         currentState = .main
+    }
+    
+    func triggerHaptic() {
+        let generator = UIImpactFeedbackGenerator(style: .medium)
+        generator.impactOccurred()
     }
 }

@@ -60,7 +60,7 @@ struct SettingsView: View {
                     // Conditional Configuration Rows
                     if settings.useShortcutsForPlayback {
                         Button(action: {
-                            triggerHaptic()
+                            appState.triggerHaptic()
                             showShortcutsSetup = true
                         }) {
                             SettingsRow(
@@ -105,6 +105,17 @@ struct SettingsView: View {
                 
                 // MARK: - Community & About
                 Section {
+                    HStack {
+                        SettingsRow(
+                            icon: "number",
+                            color: .purple,
+                            title: "Version"
+                        ) {
+                            Text("1.0")
+                                .foregroundStyle(.gray)
+                        }
+                    }
+                    
                     Link(destination: URL(string: "https://forms.gle/RSBVKFks8jatoQLS8")!) {
                         SettingsRow(
                             icon: "hammer.fill",
@@ -116,38 +127,17 @@ struct SettingsView: View {
                                 .foregroundStyle(.purple)
                         }
                     }
-                    
-                    HStack {
-                        Text("Version")
-                        Spacer()
-                        Text("1.0")
-                            .foregroundStyle(.secondary)
-                    }
                 } header: {
-                    Text("Community")
+                    Text("About")
+                } footer: {
+                    Text("Created by Wyld-1 for the wild ones.")
                 }
                 
                 // MARK: - Debug Section (Hidden in Release)
                 #if DEBUG
                 Section {
                     Button(action: {
-                        triggerHaptic()
-                        showTestControls = true
-                    }) {
-                        SettingsRow(
-                            icon: "flask.fill",
-                            color: .green,
-                            title: "Open Test Controls"
-                        ) {
-                            Image(systemName: "chevron.left.forwardslash.chevron.right")
-                                .font(.caption)
-                                .foregroundStyle(.green)
-                        }
-                    }
-                    
-                    Button(action: {
-                        triggerHaptic()
-                        // Reset Flow
+                        appState.triggerHaptic()
                         var newSettings = settings
                         newSettings.hasCompletedInitialSetup = false
                         newSettings.isTutorialCompleted = false
@@ -165,6 +155,21 @@ struct SettingsView: View {
                                 .foregroundStyle(.red)
                         }
                     }
+                    
+                    Button(action: {
+                        appState.triggerHaptic()
+                        showTestControls = true
+                    }) {
+                        SettingsRow(
+                            icon: "flask.fill",
+                            color: .red,
+                            title: "Open Test Controls"
+                        ) {
+                            Image(systemName: "chevron.left.forwardslash.chevron.right")
+                                .font(.caption)
+                                .foregroundStyle(.red)
+                        }
+                    }
                 } header: {
                     Text("Debug Tools")
                 }
@@ -175,7 +180,7 @@ struct SettingsView: View {
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button("Done") {
-                        triggerHaptic()
+                        appState.triggerHaptic()
                         saveAndDismiss()
                     }
                     .foregroundStyle(.orange)
@@ -207,11 +212,6 @@ struct SettingsView: View {
     private func saveAndDismiss() {
         SharedSettings.save(settings)
         dismiss()
-    }
-    
-    private func triggerHaptic() {
-        let generator = UIImpactFeedbackGenerator(style: .medium)
-        generator.impactOccurred()
     }
 }
 

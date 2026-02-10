@@ -25,7 +25,7 @@ struct WatchConnectionHelpView: View {
         ZStack {
             Color.black.ignoresSafeArea()
             
-            VStack(spacing: 16) {
+            VStack(spacing: 8) {
                 // Header
                 HStack {
                     Text("Connection Help")
@@ -40,6 +40,19 @@ struct WatchConnectionHelpView: View {
                     }
                 }
                 .padding(.top, 24)
+                
+                HStack {
+                    Image(systemName: "chevron.up")
+                        .font(.caption)
+                        .foregroundStyle(.gray)
+                    
+                    Text("Swipe up for more")
+                        .font(.caption)
+                        .foregroundStyle(.gray)
+                    
+                    Spacer()
+                }
+                .padding(.bottom, 8)
                 
                 ScrollView {
                     VStack(alignment: .leading, spacing: 24) {

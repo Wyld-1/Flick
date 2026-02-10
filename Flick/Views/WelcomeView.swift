@@ -53,8 +53,7 @@ struct WelcomeView: View {
                 
                 // Bright orange Continue button
                 Button(action: {
-                    let generator = UIImpactFeedbackGenerator(style: .medium)
-                    generator.impactOccurred()
+                    appState.triggerHaptic()
                     appState.completeWelcome()
                 }) {
                     Text("Continue")
