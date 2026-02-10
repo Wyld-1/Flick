@@ -1,5 +1,5 @@
 //
-//  ReusableGraphics.swift
+//  ReusableElements.swift
 //  Flick
 //
 //  Consolidated graphics, styles, and haptic engine
@@ -9,18 +9,17 @@ import SwiftUI
 import UIKit // Required for UIImpactFeedbackGenerator
 import WatchConnectivity
 
-// MARK: - Haptic Manager (The Fix for Lag)
+// MARK: - Haptic Manager
 class HapticManager {
     static let shared = HapticManager()
     
-    // key: Keep these as properties so the engine stays "warm"
     private let mediumImpact = UIImpactFeedbackGenerator(style: .medium)
     private let notification = UINotificationFeedbackGenerator()
     private let selection = UISelectionFeedbackGenerator()
     
     private init() {}
     
-    /// Call this when the app launches to wake up the Taptic Engine
+    // Call this when the app launches to wake up the Haptic Engine
     func prepare() {
         mediumImpact.prepare()
         notification.prepare()
@@ -95,7 +94,6 @@ struct GlassStatusDock: View {
     
     var body: some View {
         Button(action: {
-            // 🚀 FAST: Uses the pre-warmed singleton
             HapticManager.shared.playImpact()
             showHelp = true
         }) {

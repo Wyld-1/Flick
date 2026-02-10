@@ -31,7 +31,7 @@ struct ContinueOnWatchView: View {
                 HStack {
                     Spacer()
                     Button(action: {
-                        appState.triggerHaptic()
+                        HapticManager.shared.playImpact()
                         var settings = SharedSettings.load()
                         settings.isTutorialCompleted = true
                         SharedSettings.save(settings)
@@ -55,7 +55,7 @@ struct ContinueOnWatchView: View {
                     Spacer()
                     
                     Button(action: {
-                        appState.triggerHaptic()
+                        HapticManager.shared.playImpact()
                         var settings = SharedSettings.load()
                         settings.isTutorialCompleted = true
                         SharedSettings.save(settings)
@@ -143,7 +143,7 @@ struct ContinueOnWatchView: View {
             }
         }
         .sheet(isPresented: $showHelpSheet) {
-            WatchConnectionHelpView()
+            ConnectionHelpView()
                 .presentationDetents([.height(230), .large])
                 .presentationDragIndicator(.visible)
         }

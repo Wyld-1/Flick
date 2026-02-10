@@ -53,7 +53,7 @@ struct WelcomeView: View {
                 
                 // Bright orange Continue button
                 Button(action: {
-                    appState.triggerHaptic()
+                    HapticManager.shared.playImpact()
                     appState.completeWelcome()
                 }) {
                     Text("Continue")

@@ -21,6 +21,7 @@ class AppStateManager: ObservableObject {
     
     init() {
         let settings = SharedSettings.load()
+        HapticManager.shared.prepare()
         
         // Determine initial state
         if settings.isTutorialCompleted {
@@ -59,10 +60,5 @@ class AppStateManager: ObservableObject {
     
     func goToMain() {
         currentState = .main
-    }
-    
-    func triggerHaptic() {
-        let generator = UIImpactFeedbackGenerator(style: .medium)
-        generator.impactOccurred()
     }
 }

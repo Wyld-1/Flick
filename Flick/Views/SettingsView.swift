@@ -60,7 +60,7 @@ struct SettingsView: View {
                     // Conditional Configuration Rows
                     if settings.useShortcutsForPlayback {
                         Button(action: {
-                            appState.triggerHaptic()
+                            HapticManager.shared.playImpact()
                             showShortcutsSetup = true
                         }) {
                             SettingsRow(
@@ -137,7 +137,7 @@ struct SettingsView: View {
                 #if DEBUG
                 Section {
                     Button(action: {
-                        appState.triggerHaptic()
+                        HapticManager.shared.playImpact()
                         var newSettings = settings
                         newSettings.hasCompletedInitialSetup = false
                         newSettings.isTutorialCompleted = false
@@ -157,7 +157,7 @@ struct SettingsView: View {
                     }
                     
                     Button(action: {
-                        appState.triggerHaptic()
+                        HapticManager.shared.playImpact()
                         showTestControls = true
                     }) {
                         SettingsRow(
@@ -180,7 +180,7 @@ struct SettingsView: View {
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button("Done") {
-                        appState.triggerHaptic()
+                        HapticManager.shared.playImpact()
                         saveAndDismiss()
                     }
                     .foregroundStyle(.orange)

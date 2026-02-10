@@ -54,7 +54,7 @@ struct PlayerSetupView: View {
                         withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
                             useShortcuts = false
                         }
-                        appState.triggerHaptic()
+                        HapticManager.shared.playImpact()
                     }
                     
                     // Spotify / Other (Shortcuts)
@@ -68,7 +68,7 @@ struct PlayerSetupView: View {
                         withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
                             useShortcuts = true
                         }
-                        appState.triggerHaptic()
+                        HapticManager.shared.playImpact()
                     }
                 }
                 .frame(height: 220)
@@ -91,7 +91,7 @@ struct PlayerSetupView: View {
                 
                 // Continue Button
                 Button(action: {
-                    appState.triggerHaptic()
+                    HapticManager.shared.playImpact()
                     
                     if useShortcuts {
                         // Show shortcuts setup as fullScreenCover

@@ -61,7 +61,7 @@ struct MainView: View {
                     
                     // Settings button
                     Button(action: {
-                        appState.triggerHaptic()
+                        HapticManager.shared.playImpact()
                         showSettings = true
                     }) {
                         Image(systemName: "gearshape.fill")
@@ -99,7 +99,7 @@ struct MainView: View {
         
         // Diagnostics sheet
         .sheet(isPresented: $showHelpSheet) {
-            WatchConnectionHelpView()
+            ConnectionHelpView()
                 .presentationDetents([.height(230), .large])
                 .presentationDragIndicator(.visible)
         }

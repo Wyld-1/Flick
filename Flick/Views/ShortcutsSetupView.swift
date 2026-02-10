@@ -124,7 +124,7 @@ struct ShortcutsSetupView: View {
     }
     
     private func handleNextButton() {
-        appState.triggerHaptic()
+        HapticManager.shared.playImpact()
         
         if isLastStep {
             UserDefaults.standard.set(true, forKey: "shortcutsConfigured")

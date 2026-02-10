@@ -37,7 +37,7 @@ struct TestView: View {
                 HStack(spacing: 60) {
                     Button(action: {
                         mediaManager.handleCommand(.previousTrack)
-                        triggerHaptic()
+                        HapticManager.shared.playImpact()
                     }) {
                         Image(systemName: "backward.fill")
                             .font(.system(size: 40))
@@ -45,7 +45,7 @@ struct TestView: View {
                     
                     Button(action: {
                         mediaManager.handleCommand(.playPause)
-                        triggerHaptic()
+                        HapticManager.shared.playImpact()
                         // Only update state if using Apple Music API
                         if !settings.useShortcutsForPlayback {
                             togglePlaybackState()
@@ -58,14 +58,14 @@ struct TestView: View {
                     
                     Button(action: {
                         mediaManager.handleCommand(.nextTrack)
-                        triggerHaptic()
+                        HapticManager.shared.playImpact()
                     }) {
                         Image(systemName: "forward.fill")
                             .font(.system(size: 40))
                     }
                 }
                 .foregroundStyle(.primary)
-                .buttonStyle(.scaleEffect) // Uses shared extension
+                .buttonStyle(ScaleButtonStyle())
             }
         }
         .presentationDetents([.fraction(0.25)])
@@ -99,11 +99,6 @@ struct TestView: View {
     
     private func togglePlaybackState() {
         isPlaying.toggle()
-    }
-    
-    private func triggerHaptic() {
-        let generator = UIImpactFeedbackGenerator(style: .medium)
-        generator.impactOccurred()
     }
 }
 
