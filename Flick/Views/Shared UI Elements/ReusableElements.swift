@@ -86,7 +86,6 @@ struct VividGlassButtonStyle: ButtonStyle {
 struct GlassStatusDock: View {
     @Binding var showHelp: Bool
     
-    // Triggers redraws when connection status changes
     @ObservedObject private var connectivity = WatchConnectivityManager.shared
     
     // Local state to track changes for notification haptics

@@ -10,8 +10,6 @@ import WatchConnectivity
 import Combine
 
 class WatchConnectivityManager: NSObject, ObservableObject {
-    var objectWillChange = ObservableObjectPublisher()
-    
     static let shared = WatchConnectivityManager()
     
     @Published var isReachable = false
