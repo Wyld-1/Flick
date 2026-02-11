@@ -94,7 +94,6 @@ class iOSMediaManager: ObservableObject {
     private func runShortcut(named name: String) {
         guard let encodedName = name.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
               let url = URL(string: "shortcuts://run-shortcut?name=\(encodedName)") else {
-            print("❌ Invalid shortcut URL for '\(name)'")
             return
         }
         
@@ -102,7 +101,11 @@ class iOSMediaManager: ObservableObject {
             if success {
                 print("✅ Shortcut '\(name)' triggered")
             } else {
-                print("❌ Failed to trigger shortcut '\(name)' - does it exist?")
+                print("❌ Failed to trigger shortcut '\(name)' - likely does not exist")
+                // Inform the user physically if the shortcut is gone
+                DispatchQueue.main.async {
+                    HapticManager.shared.playWarning()
+                }
             }
         }
     }

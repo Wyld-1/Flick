@@ -228,10 +228,26 @@ extension MotionManager: HKWorkoutSessionDelegate {
         from fromState: HKWorkoutSessionState,
         date: Date
     ) {
-        // Handle state changes if needed
+        DispatchQueue.main.async {
+            switch toState {
+            case .running, .prepared:
+                // Resume sensors if OS unpauses Flick
+                print("⌚️ Session resumed")
+                self.resumeMonitoring()
+                
+            case .paused, .ended, .stopped, .notStarted:
+                // Kill sensors immediately to save battery
+                print("⌚️ Session paused/ended by system")
+                self.motion.stopDeviceMotionUpdates()
+                
+            @unknown default:
+                break
+            }
+        }
     }
     
     func workoutSession(_ workoutSession: HKWorkoutSession, didFailWithError error: Error) {
         print("Workout session failed: \(error.localizedDescription)")
+        motion.stopDeviceMotionUpdates()
     }
 }

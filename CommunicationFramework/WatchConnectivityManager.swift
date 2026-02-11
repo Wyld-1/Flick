@@ -54,9 +54,15 @@ class WatchConnectivityManager: NSObject, ObservableObject {
     
     // MARK: - Command Queue & Retry
     private func queueCommand(_ command: MediaCommand) {
-        commandQueue.append(command)
-        startRetryTimer()
-    }
+            // OPTIMIZATION: Don't let the queue grow forever.
+            // If we have > 3 commands pending, drop the oldest one.
+            if commandQueue.count > 3 {
+                commandQueue.removeFirst()
+            }
+            
+            commandQueue.append(command)
+            startRetryTimer()
+        }
     
     private func startRetryTimer() {
         guard retryTimer == nil else { return }
