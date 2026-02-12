@@ -1096,13 +1096,13 @@
 				INFOPLIST_KEY_CFBundleDisplayName = Flick;
 				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "Flick uses Health capabilites to process gestures";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = wildcat.flickplayback.Flick;
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = wildcat.gestureplayback.Flick;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = wildcat.flickplayback.Flick.watchkitapp;
+				PRODUCT_BUNDLE_IDENTIFIER = wildcat.gestureplayback.Flick.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -1132,13 +1132,13 @@
 				INFOPLIST_KEY_CFBundleDisplayName = Flick;
 				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "Flick uses Health capabilites to process gestures";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = wildcat.flickplayback.Flick;
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = wildcat.gestureplayback.Flick;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = wildcat.flickplayback.Flick.watchkitapp;
+				PRODUCT_BUNDLE_IDENTIFIER = wildcat.gestureplayback.Flick.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -1180,7 +1180,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = wildcat.flickplayback.Flick;
+				PRODUCT_BUNDLE_IDENTIFIER = wildcat.gestureplayback.Flick;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
@@ -1221,7 +1221,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = wildcat.flickplayback.Flick;
+				PRODUCT_BUNDLE_IDENTIFIER = wildcat.gestureplayback.Flick;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;

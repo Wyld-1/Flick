@@ -78,7 +78,6 @@ struct SettingsView: View {
                                     }
                                 }
                             )) {
-                                // 🎨 USE CUSTOM ASSETS IN DROPDOWN
                                 Label("Apple Music", image: "Apple Music Icon")
                                     .tag(PlaybackMethod.appleMusic)
                                 
@@ -138,11 +137,21 @@ struct SettingsView: View {
                         }
                     }
                     
-                    // 2. SPOTIFY FORCE RE-AUTH
+                    // 2. SPOTIFY STATUS & RE-AUTH
                     if settings.playbackMethod == .spotify {
+                        // Authentication Status
+                        SettingsRow(
+                            icon: "key.fill",
+                            color: .green,
+                            title: "Authenticated"
+                        ) {
+                            Text(spotifyAuthStatus ? "Yes" : "No")
+                                .foregroundStyle(spotifyAuthStatus ? .green : .red)
+                                .font(.subheadline)
+                        }
+                        
                         Button(action: {
                             HapticManager.shared.playImpact()
-                            // Manual Force Re-Auth
                             Task {
                                 await MainActor.run {
                                     iOSMediaManager.shared.appRemote.authorizeAndPlayURI("")
@@ -166,9 +175,9 @@ struct SettingsView: View {
                 } footer: {
                     switch settings.playbackMethod {
                     case .appleMusic:
-                        Text("Apple Music subscription requiered.")
+                        Text("Apple Music subscription required.")
                     case .spotify:
-                        Text("Spotify Premium requiered.")
+                        Text("Spotify Premium required.")
                     case .shortcuts:
                         Text("Universal compatibility. Requires iPhone to be unlocked.")
                     }
@@ -275,6 +284,14 @@ struct SettingsView: View {
         SharedSettings.save(settings)
     }
     
+    // Check Spotify auth status
+    private var spotifyAuthStatus: Bool {
+        // Check both token existence AND active connection
+        let hasToken = UserDefaults.standard.string(forKey: "spotifyAccessToken") != nil
+        let isConnected = iOSMediaManager.shared.appRemote.isConnected
+        return hasToken || isConnected
+    }
+    
     private var currentIconName: String {
         switch settings.playbackMethod {
         case .appleMusic: return "Apple Music Icon"
@@ -300,7 +317,7 @@ struct SettingsView: View {
     }
 }
 
-// MARK: - Helper View Component (Updated for Custom Assets)
+// MARK: - Helper View Component
 struct SettingsRow<Content: View>: View {
     let icon: String
     let isSystemIcon: Bool
@@ -308,7 +325,6 @@ struct SettingsRow<Content: View>: View {
     let title: String
     let content: Content
     
-    // Default to true for backward compatibility
     init(icon: String, isSystemIcon: Bool = true, color: Color, title: String, @ViewBuilder content: () -> Content) {
         self.icon = icon
         self.isSystemIcon = isSystemIcon
@@ -329,7 +345,6 @@ struct SettingsRow<Content: View>: View {
                         .font(.system(size: 15, weight: .semibold))
                         .foregroundStyle(.white)
                 } else {
-                    // Render Custom Asset
                     Image(icon)
                         .resizable()
                         .aspectRatio(contentMode: .fit)
