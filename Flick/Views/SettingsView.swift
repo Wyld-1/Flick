@@ -22,7 +22,7 @@ struct SettingsView: View {
                 // MARK: - Gestures Section
                 Section {
                     SettingsRow(
-                        icon: "arrow.left.arrow.right",
+                        icon: "switch.2",
                         color: .orange,
                         title: "Reverse Flick directions"
                     ) {
@@ -60,7 +60,7 @@ struct SettingsView: View {
                 Section {
                     // Custom Icon Row for Player Selection
                     SettingsRow(
-                        icon: "square.stack.3d.down.right.fill",
+                        icon: "speaker.wave.2.fill",
                         isSystemIcon: true,
                         color: currentColor,
                         title: "Playback Source"
@@ -166,11 +166,11 @@ struct SettingsView: View {
                 } footer: {
                     switch settings.playbackMethod {
                     case .appleMusic:
-                        Text("Uses the native iOS Music player. Works best with Apple Music and local library.")
+                        Text("Apple Music subscription requiered.")
                     case .spotify:
-                        Text("Controls the active Spotify session. If playback doesn't start, tap 'Re-Authorize'.")
+                        Text("Spotify Premium requiered.")
                     case .shortcuts:
-                        Text("Advanced mode. Runs custom Shortcuts for each gesture.")
+                        Text("Universal compatibility. Requires iPhone to be unlocked.")
                     }
                 }
                 
@@ -285,9 +285,9 @@ struct SettingsView: View {
     
     private var currentColor: Color {
         switch settings.playbackMethod {
-        case .appleMusic: return .red
+        case .appleMusic: return .pink
         case .spotify: return .green
-        case .shortcuts: return .pink
+        case .shortcuts: return .purple
         }
     }
     
@@ -326,7 +326,7 @@ struct SettingsRow<Content: View>: View {
                 
                 if isSystemIcon {
                     Image(systemName: icon)
-                        .font(.system(size: 14, weight: .semibold))
+                        .font(.system(size: 15, weight: .semibold))
                         .foregroundStyle(.white)
                 } else {
                     // Render Custom Asset

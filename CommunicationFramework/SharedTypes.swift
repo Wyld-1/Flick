@@ -23,7 +23,7 @@ enum PlaybackMethod: String, Codable {
 
 // Constants that sync between devices
 struct AppConstants {
-    static let appVersion = "1.3"
+    static let appVersion = "1.2"
     static let flickPurple = Color(red: 96/255, green: 0/255, blue: 247/255)
 }
 
