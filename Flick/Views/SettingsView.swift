@@ -141,8 +141,8 @@ struct SettingsView: View {
                     if settings.playbackMethod == .spotify {
                         // Authentication Status
                         SettingsRow(
-                            icon: "key.fill",
-                            color: .green,
+                            icon: spotifyAuthStatus ? "shield.lefthalf.filled.badge.checkmark" : "shield.lefthalf.filled.slash",
+                            color: spotifyAuthStatus ? .green : .red,
                             title: "Authenticated"
                         ) {
                             Text(spotifyAuthStatus ? "Yes" : "No")
