@@ -32,10 +32,7 @@ struct ContinueOnWatchView: View {
                     Spacer()
                     Button(action: {
                         HapticManager.shared.playImpact()
-                        var settings = SharedSettings.load()
-                        settings.isTutorialCompleted = true
-                        SharedSettings.save(settings)
-                        appState.currentState = .welcome
+                        appState.resetForDebug()
                     }) {
                         Text("RESTART")
                             .font(.caption2)

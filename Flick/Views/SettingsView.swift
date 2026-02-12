@@ -159,9 +159,9 @@ struct SettingsView: View {
                         dismiss()
                     }) {
                         SettingsRow(
-                            icon: "arrow.counterclockwise",
+                            icon: "trash.fill",
                             color: .red,
-                            title: "Reset to Welcome"
+                            title: "Clear all app data"
                         ) {
                             Image(systemName: "chevron.left.forwardslash.chevron.right")
                                 .font(.caption)
@@ -176,7 +176,7 @@ struct SettingsView: View {
                         SettingsRow(
                             icon: "flask.fill",
                             color: .red,
-                            title: "Open Test Controls"
+                            title: "Open test controls"
                         ) {
                             Image(systemName: "chevron.left.forwardslash.chevron.right")
                                 .font(.caption)

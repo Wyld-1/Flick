@@ -19,11 +19,6 @@ enum AppState {
 class AppStateManager: ObservableObject {
     @Published var currentState: AppState
     
-    private var isIOSSetupFinished: Bool {
-        get { UserDefaults.standard.bool(forKey: "iOS_Setup_Finished") }
-        set { UserDefaults.standard.set(newValue, forKey: "iOS_Setup_Finished") }
-    }
-    
     init() {
         // 1. Initialize Managers
         _ = WatchConnectivityManager.shared
@@ -33,12 +28,10 @@ class AppStateManager: ObservableObject {
         // 2. Load Data
         let settings = SharedSettings.load()
         
-        let localSetupFinished = UserDefaults.standard.bool(forKey: "iOS_Setup_Finished")
-        
-        // 3. Determine Initial State (using the local constant)
-        if settings.isTutorialCompleted && localSetupFinished {
+        // 3. Determine Initial State - BOTH must be true
+        if settings.isTutorialCompleted && settings.hasCompletedInitialSetup {
             self.currentState = .main
-        } else if localSetupFinished {
+        } else if settings.hasCompletedInitialSetup {
             self.currentState = .waitingForWatch
         } else {
             self.currentState = .welcome
@@ -53,8 +46,8 @@ class AppStateManager: ObservableObject {
             guard let self = self else { return }
             let freshSettings = SharedSettings.load()
             
-            // Now we can use 'self.isIOSSetupFinished' safely
-            if freshSettings.isTutorialCompleted && self.isIOSSetupFinished {
+            // Only advance when BOTH are complete
+            if freshSettings.isTutorialCompleted && freshSettings.hasCompletedInitialSetup {
                 self.currentState = .main
             }
         }
@@ -65,15 +58,15 @@ class AppStateManager: ObservableObject {
     }
     
     func completePlaybackChoice(useShortcuts: Bool) {
-        // 1. Save preferences to Shared Settings (synced)
+        // 1. Save preferences to Shared Settings
         var settings = SharedSettings.load()
         settings.useShortcutsForPlayback = useShortcuts
+        settings.hasCompletedInitialSetup = true  // ← Mark iOS setup complete
         SharedSettings.save(settings)
         
-        // 2. Save Setup State to LOCAL storage
-        isIOSSetupFinished = true
+        print("📱 iOS setup complete. Watch tutorial complete: \(settings.isTutorialCompleted)")
         
-        // 3. Check Watch status
+        // 2. Check if BOTH are complete
         if settings.isTutorialCompleted {
             currentState = .main
         } else {
@@ -87,14 +80,14 @@ class AppStateManager: ObservableObject {
     
     // MARK: - Debug Helper
     func resetForDebug() {
-        // Reset Local State
-        isIOSSetupFinished = false
-        
-        // Reset Shared State
+        // Reset BOTH flags in shared storage
         var settings = SharedSettings.load()
+        settings.hasCompletedInitialSetup = false
         settings.isTutorialCompleted = false
         SharedSettings.save(settings)
         
         currentState = .welcome
+        
+        print("🔄 Reset to welcome. Both flags cleared.")
     }
 }

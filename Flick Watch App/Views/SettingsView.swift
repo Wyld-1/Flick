@@ -19,7 +19,7 @@ struct SettingsView: View {
                     get: { appState.isFlickDirectionReversed },
                     set: { newValue in
                         appState.isFlickDirectionReversed = newValue
-                        appState.saveSettings() // ← Save on change
+                        appState.saveSettings()
                         WKInterfaceDevice.current().play(.click)
                     }
                 )) {
@@ -37,7 +37,7 @@ struct SettingsView: View {
                     get: { appState.isTapEnabled },
                     set: { newValue in
                         appState.isTapEnabled = newValue
-                        appState.saveSettings() // Save on change
+                        appState.saveSettings()
                         WKInterfaceDevice.current().play(.click)
                     }
                 )) {
@@ -84,14 +84,60 @@ struct SettingsView: View {
                 .frame(maxWidth: .infinity)
             }
             .listStyle(.plain)
+            
+            #if DEBUG
+            Section {
+                // DEBUG: Clear all data
+                
+                Button(action: {
+                    WKInterfaceDevice.current().play(.click)
+                    clearAllData()
+                }) {
+                    ZStack {
+                        Text("Clear all data")
+                            .foregroundStyle(.red)
+                        HStack {
+                            Image(systemName: "trash.fill")
+                                .foregroundStyle(.red)
+                            Spacer()
+                        }
+                    }
+                    .frame(maxWidth: .infinity)
+                }
+            }
+            .listStyle(.plain)
+            #endif
+            
         }
         .sheet(isPresented: $showCredits) {
             CreditsView()
         }
         .onAppear {
-            appState.loadSettings() // ← Load when menu opens
+            appState.loadSettings()
         }
     }
+    
+    // MARK: - Debug Helper
+    #if DEBUG
+    private func clearAllData() {
+        // 1. Clear local UserDefaults
+        UserDefaults.standard.removeObject(forKey: "hasCompletedWelcome")
+        
+        // 2. Clear shared settings
+        var settings = SharedSettings.load()
+        settings.isTutorialCompleted = false
+        settings.hasCompletedInitialSetup = false
+        settings.isTapEnabled = false
+        settings.isFlickDirectionReversed = false
+        settings.useShortcutsForPlayback = false
+        SharedSettings.save(settings)
+        
+        // 3. Reset app state
+        appState.resetToWelcome()
+        
+        print("⌚️ 🗑️ All data cleared - reset to welcome")
+    }
+    #endif
 }
 
 #Preview {
