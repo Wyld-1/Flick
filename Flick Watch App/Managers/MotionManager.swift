@@ -98,6 +98,12 @@ class MotionManager: NSObject, ObservableObject {
     }
     
     private func startWorkoutSession() {
+        // Skip workout sessions in simulator (they crash)
+        #if targetEnvironment(simulator)
+        print("⌚️ Skipping workout session (simulator)")
+        return
+        #endif
+        
         let configuration = HKWorkoutConfiguration()
         configuration.activityType = .other
         configuration.locationType = .unknown
@@ -122,8 +128,13 @@ class MotionManager: NSObject, ObservableObject {
             print("Error starting workout session: \(error.localizedDescription)")
         }
     }
-    
+
     private func endWorkoutSession() {
+        // Skip in simulator
+        #if targetEnvironment(simulator)
+        return
+        #endif
+        
         workoutSession?.end()
         workoutBuilder?.endCollection(withEnd: Date()) { success, error in
             if success {

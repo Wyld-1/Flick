@@ -113,7 +113,7 @@ struct ContinueOnWatchView: View {
                             .foregroundStyle(.orange)
                     }
                 }
-                .frame(height: 350)
+                .frame(height: 400)
                 
                 // Text instructions
                 VStack(spacing: 20) {
@@ -132,6 +132,7 @@ struct ContinueOnWatchView: View {
                         .lineSpacing(4)
                 }
                 
+                Spacer()
                 Spacer()
                 
                 // Control Dock

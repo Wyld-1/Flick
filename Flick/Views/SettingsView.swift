@@ -73,7 +73,7 @@ struct SettingsView: View {
                                     saveSettingsImmediately()
                                     
                                     // Soft-connect check
-                                    if newValue == .spotify {
+                                    if newValue == .spotify && !spotifyAuthStatus{
                                         Task { await iOSMediaManager.shared.authorizeSpotify() }
                                     }
                                 }
@@ -84,8 +84,10 @@ struct SettingsView: View {
                                 Label("Spotify", image: "Spotify Icon")
                                     .tag(PlaybackMethod.spotify)
                                 
+                                #if DEBUG
                                 Label("Other", image: "Shortcuts Icon")
                                     .tag(PlaybackMethod.shortcuts)
+                                #endif
                             }
                         } label: {
                             HStack {

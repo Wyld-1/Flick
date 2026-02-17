@@ -19,6 +19,9 @@ enum AppState {
 class AppStateManager: ObservableObject {
     @Published var currentState: AppState
     
+    // Store observer token to prevent premature deallocation
+    private var settingsObserver: NSObjectProtocol?
+    
     init() {
         // 1. Initialize Managers
         _ = WatchConnectivityManager.shared
@@ -37,19 +40,33 @@ class AppStateManager: ObservableObject {
             self.currentState = .welcome
         }
         
-        // 4. Listen for Watch updates
-        NotificationCenter.default.addObserver(
+        // 4. Properly store observer and add thread safety
+        settingsObserver = NotificationCenter.default.addObserver(
             forName: NSNotification.Name("SettingsDidUpdate"),
             object: nil,
             queue: .main
         ) { [weak self] _ in
             guard let self = self else { return }
-            let freshSettings = SharedSettings.load()
             
-            // Only advance when BOTH are complete
-            if freshSettings.isTutorialCompleted && freshSettings.hasCompletedInitialSetup {
-                self.currentState = .main
+            // Prevent concurrent updates
+            DispatchQueue.main.async {
+                let freshSettings = SharedSettings.load()
+                
+                // Only advance when BOTH are complete
+                if freshSettings.isTutorialCompleted && freshSettings.hasCompletedInitialSetup {
+                    print("📱 Both setup flags complete - advancing to main")
+                    self.currentState = .main
+                } else {
+                    print("📱 Settings updated but not both complete yet")
+                }
             }
+        }
+    }
+    
+    deinit {
+        // Clean up observer
+        if let observer = settingsObserver {
+            NotificationCenter.default.removeObserver(observer)
         }
     }
     
@@ -67,7 +84,7 @@ class AppStateManager: ObservableObject {
         
         print("📱 iOS setup complete. Playback Method: \(method)")
         
-        // 2. Check if BOTH are complete
+        // Check if BOTH are complete
         if settings.isTutorialCompleted {
             currentState = .main
         } else {
@@ -76,7 +93,9 @@ class AppStateManager: ObservableObject {
     }
     
     func goToMain() {
-        currentState = .main
+        DispatchQueue.main.async { [weak self] in
+            self?.currentState = .main
+        }
     }
     
     // MARK: - Debug Helper
@@ -87,7 +106,9 @@ class AppStateManager: ObservableObject {
         settings.isTutorialCompleted = false
         SharedSettings.save(settings)
         
-        currentState = .welcome
+        DispatchQueue.main.async { [weak self] in
+            self?.currentState = .welcome
+        }
         
         print("🔄 Reset to welcome. Both flags cleared.")
     }

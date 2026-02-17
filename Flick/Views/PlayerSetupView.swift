@@ -70,6 +70,7 @@ struct PlayerSetupView: View {
                         select(.spotify)
                     }
                     
+                    #if DEBUG
                     // Shortcuts / Other
                     ServiceCard(
                         isSelected: selectedMethod == .shortcuts,
@@ -81,6 +82,7 @@ struct PlayerSetupView: View {
                     ) {
                         select(.shortcuts)
                     }
+                    #endif
                 }
                 .padding(.horizontal, 24)
                 
