@@ -288,10 +288,7 @@ struct SettingsView: View {
     
     // Check Spotify auth status
     private var spotifyAuthStatus: Bool {
-        // Check both token existence AND active connection
-        let hasToken = UserDefaults.standard.string(forKey: "spotifyAccessToken") != nil
-        let isConnected = iOSMediaManager.shared.appRemote.isConnected
-        return hasToken || isConnected
+        iOSMediaManager.shared.hasValidToken || iOSMediaManager.shared.appRemote.isConnected
     }
     
     private var currentIconName: String {

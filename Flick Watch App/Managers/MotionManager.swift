@@ -34,11 +34,16 @@ class MotionManager: NSObject, ObservableObject {
     private var workoutSession: HKWorkoutSession?
     private var workoutBuilder: HKLiveWorkoutBuilder?
     
-    // Tunable thresholds
-    private let TWIST_THRESHOLD: Double = 2.5               // rad/s
-    private let UPSIDE_DOWN_THRESHOLD: Double = 0.7         // Gravity force ratio
-    private let UPSIDE_DOWN_HOLD_TIME: TimeInterval = 1.5   // Seconds
-    private let GESTURE_COOLDOWN: TimeInterval = 0.8        // Seconds
+    // Tunable thresholds - optimized for easier detection
+    private let TWIST_THRESHOLD: Double = 1.8               // rad/s (reduced from 2.5)
+    private let MIN_TWIST_DURATION: TimeInterval = 0.1      // Minimum flick duration
+    private let UPSIDE_DOWN_THRESHOLD: Double = 0.6         // Gravity force ratio (reduced from 0.7)
+    private let UPSIDE_DOWN_HOLD_TIME: TimeInterval = 1.2   // Seconds (reduced from 1.5)
+    private let GESTURE_COOLDOWN: TimeInterval = 0.6        // Seconds (reduced from 0.8)
+    
+    // Tracking for duration-based detection
+    private var twistStartTime: Date?
+    private var peakRotationRate: Double = 0.0
     
     var isLeftWrist: Bool = true
     
@@ -156,23 +161,37 @@ class MotionManager: NSObject, ObservableObject {
     
     private func detectTwist(_ data: CMDeviceMotion) {
         let rotationRate = data.rotationRate.z
+        let absRotation = abs(rotationRate)
         
-        if abs(rotationRate) > TWIST_THRESHOLD {
-            let shouldReverse = (isLeftWrist != (appState?.isFlickDirectionReversed ?? false))
+        // Track peak rotation during flick
+        if absRotation > peakRotationRate {
+            peakRotationRate = absRotation
+        }
+        
+        // Start tracking when threshold exceeded
+        if absRotation > TWIST_THRESHOLD {
+            if twistStartTime == nil {
+                twistStartTime = Date()
+            }
+        } else if let startTime = twistStartTime {
+            // Motion fell below threshold - check if it was a valid flick
+            let duration = Date().timeIntervalSince(startTime)
             
-            if shouldReverse {
-                if rotationRate > 0 {
-                    triggerGesture(.nextTrack)
+            if duration >= MIN_TWIST_DURATION && peakRotationRate > TWIST_THRESHOLD {
+                // Valid flick detected - determine direction
+                let shouldReverse = (isLeftWrist != (appState?.isFlickDirectionReversed ?? false))
+                let direction = peakRotationRate > 0
+                
+                if shouldReverse {
+                    triggerGesture(direction ? .nextTrack : .previousTrack)
                 } else {
-                    triggerGesture(.previousTrack)
-                }
-            } else {
-                if rotationRate > 0 {
-                    triggerGesture(.previousTrack)
-                } else {
-                    triggerGesture(.nextTrack)
+                    triggerGesture(direction ? .previousTrack : .nextTrack)
                 }
             }
+            
+            // Reset tracking
+            twistStartTime = nil
+            peakRotationRate = 0.0
         }
     }
     

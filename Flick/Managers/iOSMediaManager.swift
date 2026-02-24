@@ -45,7 +45,7 @@ class iOSMediaManager: NSObject, ObservableObject, SPTAppRemoteDelegate, SPTAppR
         print("📱 MediaManager initialized")
         
         // Auto-load saved token
-        if let token = UserDefaults.standard.string(forKey: "spotifyAccessToken") {
+        if let token = Self.savedToken {
             appRemote.connectionParameters.accessToken = token
             print("🔑 Loaded saved Spotify token")
         }
@@ -53,10 +53,12 @@ class iOSMediaManager: NSObject, ObservableObject, SPTAppRemoteDelegate, SPTAppR
     
     // MARK: - Spotify Connection
     
+    private static let spotifyTokenKey = "spotifyAccessToken"
+    private static let connectionTimeout: UInt64 = 800_000_000 // 0.8s
+    
     func connectToSpotify() {
         guard !appRemote.isConnected, !isConnecting else { return }
-        
-        guard let token = UserDefaults.standard.string(forKey: "spotifyAccessToken") else {
+        guard let token = Self.savedToken else {
             print("⚠️ No token - authorize first")
             return
         }
@@ -74,8 +76,7 @@ class iOSMediaManager: NSObject, ObservableObject, SPTAppRemoteDelegate, SPTAppR
             return
         }
         
-        // Save and connect
-        UserDefaults.standard.set(token, forKey: "spotifyAccessToken")
+        Self.saveToken(token)
         appRemote.connectionParameters.accessToken = token
         isConnecting = true
         appRemote.connect()
@@ -86,9 +87,9 @@ class iOSMediaManager: NSObject, ObservableObject, SPTAppRemoteDelegate, SPTAppR
         guard !appRemote.isConnected, !isConnecting else { return }
         
         // Try existing token first
-        if UserDefaults.standard.string(forKey: "spotifyAccessToken") != nil {
+        if Self.savedToken != nil {
             connectToSpotify()
-            try? await Task.sleep(nanoseconds: 800_000_000)
+            try? await Task.sleep(nanoseconds: Self.connectionTimeout)
             if appRemote.isConnected { return }
         }
         
@@ -108,6 +109,20 @@ class iOSMediaManager: NSObject, ObservableObject, SPTAppRemoteDelegate, SPTAppR
     func disconnectFromSpotify() {
         if appRemote.isConnected { appRemote.disconnect() }
         isConnecting = false
+    }
+    
+    // MARK: - Token Management
+    
+    var hasValidToken: Bool {
+        Self.savedToken != nil
+    }
+    
+    private static var savedToken: String? {
+        UserDefaults.standard.string(forKey: spotifyTokenKey)
+    }
+    
+    private static func saveToken(_ token: String) {
+        UserDefaults.standard.set(token, forKey: spotifyTokenKey)
     }
     
     // MARK: - Command Handler
