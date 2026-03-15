@@ -20,7 +20,7 @@ struct PlayerSetupView: View {
             
             // Subtle ambient background light
             RadialGradient(
-                gradient: Gradient(colors: [.orange.opacity(0.05), .clear]),
+                gradient: Gradient(colors: [.orange.opacity(0.1), .clear]),
                 center: .center,
                 startRadius: 10,
                 endRadius: 500
@@ -146,8 +146,10 @@ struct PlayerSetupView: View {
     
     private func handleContinue() {
         HapticManager.shared.playImpact()
+        var settings = SharedSettings.load()
         switch selectedMethod {
         case .appleMusic:
+            settings.hasCompletedInitialSetup = true;
             appState.completePlaybackChoice(method: .appleMusic)
         case .spotify:
             isAuthorizingSpotify = true
@@ -155,6 +157,7 @@ struct PlayerSetupView: View {
                 await iOSMediaManager.shared.authorizeSpotify()
                 await MainActor.run {
                     isAuthorizingSpotify = false
+                    settings.hasCompletedInitialSetup = true;
                     appState.completePlaybackChoice(method: .spotify)
                 }
             }

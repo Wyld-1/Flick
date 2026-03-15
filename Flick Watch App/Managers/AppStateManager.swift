@@ -19,6 +19,8 @@ class AppStateManager: ObservableObject {
     @Published var isFlickDirectionReversed: Bool
     @Published var playbackMethod: PlaybackMethod
     
+    private var settingsObserver: NSObjectProtocol?
+    
     init() {
         let wristLocation = WKInterfaceDevice.current().wristLocation
         self.isLeftWrist = (wristLocation == .left)
@@ -31,6 +33,21 @@ class AppStateManager: ObservableObject {
         
         let hasCompletedWelcome = UserDefaults.standard.bool(forKey: "hasCompletedWelcome")
         self.currentState = hasCompletedWelcome ? .main : .welcome
+        
+        // Listen for settings updates from iPhone
+        settingsObserver = NotificationCenter.default.addObserver(
+            forName: NSNotification.Name("SettingsDidUpdate"),
+            object: nil,
+            queue: .main
+        ) { [weak self] _ in
+            self?.loadSettings()
+        }
+    }
+    
+    deinit {
+        if let observer = settingsObserver {
+            NotificationCenter.default.removeObserver(observer)
+        }
     }
     
     // Explicitly save when toggle changes

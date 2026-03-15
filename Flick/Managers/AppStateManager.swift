@@ -104,6 +104,7 @@ class AppStateManager: ObservableObject {
         var settings = SharedSettings.load()
         settings.hasCompletedInitialSetup = false
         settings.isTutorialCompleted = false
+        settings.dataCollectionState = .off
         SharedSettings.save(settings)
         
         DispatchQueue.main.async { [weak self] in

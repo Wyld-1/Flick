@@ -215,6 +215,22 @@ struct SettingsView: View {
                     Text("Created by Wyld-1 for the wild ones.")
                 }
                 
+                // MARK: - Machine Learning Section
+                Section {
+                    NavigationLink(destination: DataCollectionView()) {
+                        SettingsRow(
+                            icon: "brain.head.profile",
+                            color: .purple,
+                            title: "Collect Training Data"
+                        ) {
+                        }
+                    }
+                } header: {
+                    Text("Machine Learning")
+                } footer: {
+                    Text("Collect sensor data to train Flick.")
+                }
+                
                 // MARK: - Debug Section
                 #if DEBUG
                 Section {

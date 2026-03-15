@@ -150,6 +150,8 @@ struct ShortcutsSetupView: View {
         
         if isLastStep {
             UserDefaults.standard.set(true, forKey: "shortcutsConfigured")
+            var settings = SharedSettings.load()
+            settings.hasCompletedInitialSetup = true;
             dismiss()
         } else {
             withAnimation {

@@ -11,6 +11,7 @@ import SwiftUI
 struct MainView: View {
     @EnvironmentObject var appState: AppStateManager
     @StateObject private var motionManager = MotionManager()
+    @ObservedObject private var dataCollector = DataCollectionManager.shared
     @State private var lastGesture: GestureType = .none
     @Environment(\.isLuminanceReduced) var isLuminanceReduced
     @State private var showSettings = false
@@ -21,34 +22,41 @@ struct MainView: View {
             ZStack {
                 // Tappable background layer
                 ZStack {
-                    // Background breathing circle
+                    // Background breathing circle - color based on recording state
                     Image(systemName: "circle")
                         .font(.system(size: geometry.size.width * 0.85))
                         .symbolEffect(.breathe.plain.wholeSymbol, isActive: !isLuminanceReduced)
-                        .foregroundStyle(.orange)
+                        .foregroundStyle(ringColor)
                     
-                    // Gesture icon or Flick text
+                    // Center content - varies by state
                     ZStack {
-                        // Gesture icon (shows when gesture detected)
-                        if lastGesture != .none {
-                            Image(systemName: gestureIcon(for: lastGesture))
-                                .font(.system(size: geometry.size.width * 0.25))
-                                .foregroundStyle(AppConstants.flickPurple)
-                                .fontWeight(.black)
-                                .symbolEffect(.bounce, value: lastGesture)
-                                .transition(.scale.combined(with: .opacity))
-                        }
-                        
-                        // "Flick" text (shows when no gesture)
-                        if lastGesture == .none {
-                            Text("Flick")
-                                .foregroundColor(AppConstants.flickPurple)
-                                .font(.system(size: geometry.size.width * 0.2))
+                        // Recording/Syncing states
+                        if dataCollector.currentState != .off {
+                            Text(centerText)
+                                .foregroundColor(.red)
+                                .font(.system(size: geometry.size.width * 0.1))
                                 .fontWeight(.black)
                                 .transition(.scale.combined(with: .opacity))
+                        } else {
+                            // Normal mode - Gesture icon or Flick text
+                            if lastGesture != .none {
+                                Image(systemName: gestureIcon(for: lastGesture))
+                                    .font(.system(size: geometry.size.width * 0.25))
+                                    .foregroundStyle(AppConstants.flickPurple)
+                                    .fontWeight(.black)
+                                    .symbolEffect(.bounce, value: lastGesture)
+                                    .transition(.scale.combined(with: .opacity))
+                            } else {
+                                Text("Flick")
+                                    .foregroundColor(AppConstants.flickPurple)
+                                    .font(.system(size: geometry.size.width * 0.2))
+                                    .fontWeight(.black)
+                                    .transition(.scale.combined(with: .opacity))
+                            }
                         }
                     }
                     .animation(.easeInOut(duration: 0.3), value: lastGesture)
+                    .animation(.easeInOut(duration: 0.3), value: dataCollector.currentState)
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .contentShape(Rectangle())
@@ -114,6 +122,28 @@ struct MainView: View {
                     }
                 }
             }
+        }
+    }
+    
+    // Ring color based on recording state
+    private var ringColor: Color {
+        switch dataCollector.currentState {
+        case .off:
+            return .orange
+        case .recording, .syncing:
+            return .red
+        }
+    }
+    
+    // Center text based on recording state
+    private var centerText: String {
+        switch dataCollector.currentState {
+        case .off:
+            return "Flick"
+        case .recording:
+            return "RECORDING"
+        case .syncing:
+            return "SYNCING"
         }
     }
     

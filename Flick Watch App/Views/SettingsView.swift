@@ -130,6 +130,7 @@ struct SettingsView: View {
         settings.isTapEnabled = false
         settings.isFlickDirectionReversed = false
         settings.playbackMethod = .appleMusic
+        settings.dataCollectionState = .off  // Reset data collection state
         
         SharedSettings.save(settings)
         
