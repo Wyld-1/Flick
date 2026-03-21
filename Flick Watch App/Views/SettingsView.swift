@@ -87,8 +87,6 @@ struct SettingsView: View {
             
             #if DEBUG
             Section {
-                // DEBUG: Clear all data
-                
                 Button(action: {
                     WKInterfaceDevice.current().play(.click)
                     clearAllData()

@@ -230,9 +230,7 @@ struct ServiceCard: View {
             }
             .padding(18)
             .background {
-                // 2. GLOW LOGIC: A distinct layer behind the card
                 ZStack {
-                    // Layer A: The "Backlight" Glow
                     if isSelected {
                         RoundedRectangle(cornerRadius: 20)
                             .fill(color)
@@ -241,13 +239,11 @@ struct ServiceCard: View {
                             .padding(-10)
                     }
                     
-                    // Physical Card Body
                     RoundedRectangle(cornerRadius: 20)
                         .fill(isSelected ? color.opacity(0.35) : Color.white.opacity(0.05))
                 }
             }
             .overlay(
-                // Border
                 RoundedRectangle(cornerRadius: 20)
                     .stroke(isSelected ? color : Color.white.opacity(0.05), lineWidth: isSelected ? 3 : 1)
             )

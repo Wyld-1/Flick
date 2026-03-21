@@ -19,8 +19,7 @@ enum AppState {
 class AppStateManager: ObservableObject {
     @Published var currentState: AppState
     
-    // Store observer token to prevent premature deallocation
-    private var settingsObserver: NSObjectProtocol?
+    private var mSettingsObserver: NSObjectProtocol?
     
     init() {
         // 1. Initialize Managers
@@ -40,19 +39,14 @@ class AppStateManager: ObservableObject {
             self.currentState = .welcome
         }
         
-        // 4. Properly store observer and add thread safety
-        settingsObserver = NotificationCenter.default.addObserver(
+        mSettingsObserver = NotificationCenter.default.addObserver(
             forName: NSNotification.Name("SettingsDidUpdate"),
             object: nil,
             queue: .main
         ) { [weak self] _ in
             guard let self = self else { return }
-            
-            // Prevent concurrent updates
             DispatchQueue.main.async {
                 let freshSettings = SharedSettings.load()
-                
-                // Only advance when BOTH are complete
                 if freshSettings.isTutorialCompleted && freshSettings.hasCompletedInitialSetup {
                     print("📱 Both setup flags complete - advancing to main")
                     self.currentState = .main
@@ -64,8 +58,7 @@ class AppStateManager: ObservableObject {
     }
     
     deinit {
-        // Clean up observer
-        if let observer = settingsObserver {
+        if let observer = mSettingsObserver {
             NotificationCenter.default.removeObserver(observer)
         }
     }
@@ -76,20 +69,11 @@ class AppStateManager: ObservableObject {
     
     func completePlaybackChoice(method: PlaybackMethod) {
         var settings = SharedSettings.load()
-        
         settings.playbackMethod = method
         settings.hasCompletedInitialSetup = true
-        
         SharedSettings.save(settings)
-        
-        print("📱 iOS setup complete. Playback Method: \(method)")
-        
-        // Check if BOTH are complete
-        if settings.isTutorialCompleted {
-            currentState = .main
-        } else {
-            currentState = .waitingForWatch
-        }
+        print("📱 iOS setup complete. Playback method: \(method)")
+        currentState = settings.isTutorialCompleted ? .main : .waitingForWatch
     }
     
     func goToMain() {
@@ -98,19 +82,15 @@ class AppStateManager: ObservableObject {
         }
     }
     
-    // MARK: - Debug Helper
     func resetForDebug() {
-        // Reset BOTH flags in shared storage
         var settings = SharedSettings.load()
         settings.hasCompletedInitialSetup = false
         settings.isTutorialCompleted = false
         settings.dataCollectionState = .off
         SharedSettings.save(settings)
-        
         DispatchQueue.main.async { [weak self] in
             self?.currentState = .welcome
         }
-        
         print("🔄 Reset to welcome. Both flags cleared.")
     }
 }

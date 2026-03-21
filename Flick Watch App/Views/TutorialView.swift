@@ -95,7 +95,7 @@ struct TutorialView: View {
             motionManager.startMonitoring()
             motionManager.isLeftWrist = appState.isLeftWrist
         }
-        .onChange(of: motionManager.lastGesture) { oldValue, newValue in
+        .onChange(of: motionManager.mLastGesture) { oldValue, newValue in
             handleGestureDetection(newValue)
         }
     }

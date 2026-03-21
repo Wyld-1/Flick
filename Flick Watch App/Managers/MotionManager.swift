@@ -22,28 +22,27 @@ enum GestureType {
 }
 
 class MotionManager: NSObject, ObservableObject {
-    @Published var lastGesture: GestureType = .none
+    @Published var mLastGesture: GestureType = .none
     weak var appState: AppStateManager?
     
-    private let motion = CMMotionManager()
-    private var lastGestureTime: Date = Date()
-    private var upsideDownStartTime: Date?
+    private let mMotion = CMMotionManager()
+    private var mLastGestureTime: Date = Date()
+    private var mUpsideDownStartTime: Date?
     
     // Workout session for background execution
-    private let healthStore = HKHealthStore()
-    private var workoutSession: HKWorkoutSession?
-    private var workoutBuilder: HKLiveWorkoutBuilder?
+    private let mHealthStore = HKHealthStore()
+    private var mWorkoutSession: HKWorkoutSession?
+    private var mWorkoutBuilder: HKLiveWorkoutBuilder?
     
-    // Tunable thresholds - optimized for easier detection
-    private let TWIST_THRESHOLD: Double = 1.8               // rad/s (reduced from 2.5)
-    private let MIN_TWIST_DURATION: TimeInterval = 0.1      // Minimum flick duration
-    private let UPSIDE_DOWN_THRESHOLD: Double = 0.6         // Gravity force ratio (reduced from 0.7)
-    private let UPSIDE_DOWN_HOLD_TIME: TimeInterval = 1.2   // Seconds (reduced from 1.5)
-    private let GESTURE_COOLDOWN: TimeInterval = 0.6        // Seconds (reduced from 0.8)
+    // Gesture detection thresholds
+    private let TWIST_THRESHOLD: Double = 2.2
+    private let MIN_TWIST_DURATION: TimeInterval = 0.1
+    private let UPSIDE_DOWN_THRESHOLD: Double = 0.6
+    private let UPSIDE_DOWN_HOLD_TIME: TimeInterval = 1.2
+    private let GESTURE_COOLDOWN: TimeInterval = 0.8
     
-    // Tracking for duration-based detection
-    private var twistStartTime: Date?
-    private var peakRotationRate: Double = 0.0
+    private var mTwistStartTime: Date?
+    private var mPeakRotationRate: Double = 0.0
     
     var isLeftWrist: Bool = true
     
@@ -58,8 +57,7 @@ class MotionManager: NSObject, ObservableObject {
     
     func requestHealthKitAuthorization(completion: @escaping (Bool) -> Void) {
         let typesToShare: Set = [HKObjectType.workoutType()]
-        
-        healthStore.requestAuthorization(toShare: typesToShare, read: nil) { success, error in
+        mHealthStore.requestAuthorization(toShare: typesToShare, read: nil) { success, error in
             if let error = error {
                 print("HealthKit authorization error: \(error.localizedDescription)")
                 completion(false)
@@ -71,41 +69,37 @@ class MotionManager: NSObject, ObservableObject {
     
     func startMonitoring() {
         startWorkoutSession()
-        
-        guard motion.isDeviceMotionAvailable else {
+        guard mMotion.isDeviceMotionAvailable else {
             print("Device motion not available")
             return
         }
-        
-        motion.deviceMotionUpdateInterval = 0.05  // 20Hz
-        motion.startDeviceMotionUpdates(to: .main) { [weak self] data, error in
+        mMotion.deviceMotionUpdateInterval = 0.05  // 20Hz
+        mMotion.startDeviceMotionUpdates(to: .main) { [weak self] data, error in
             guard let self = self, let data = data else { return }
             self.processMotion(data)
         }
     }
     
     func stopMonitoring() {
-        motion.stopDeviceMotionUpdates()
+        mMotion.stopDeviceMotionUpdates()
         endWorkoutSession()
     }
     
     func pauseMonitoring() {
-        motion.stopDeviceMotionUpdates()
-        // Keep workout session alive but stop motion updates to save battery
+        // Keep workout session alive; stop polling to save battery
+        mMotion.stopDeviceMotionUpdates()
     }
     
     func resumeMonitoring() {
-        guard motion.isDeviceMotionAvailable else { return }
-        motion.startDeviceMotionUpdates(to: .main) { [weak self] data, error in
+        guard mMotion.isDeviceMotionAvailable else { return }
+        mMotion.startDeviceMotionUpdates(to: .main) { [weak self] data, error in
             guard let self = self, let data = data else { return }
             self.processMotion(data)
         }
     }
     
     private func startWorkoutSession() {
-        // Skip workout sessions in simulator (they crash)
         #if targetEnvironment(simulator)
-        print("⌚️ Skipping workout session (simulator)")
         return
         #endif
         
@@ -114,17 +108,15 @@ class MotionManager: NSObject, ObservableObject {
         configuration.locationType = .unknown
         
         do {
-            workoutSession = try HKWorkoutSession(healthStore: healthStore, configuration: configuration)
-            workoutBuilder = workoutSession?.associatedWorkoutBuilder()
-            
-            workoutSession?.delegate = self
-            workoutBuilder?.dataSource = HKLiveWorkoutDataSource(
-                healthStore: healthStore,
+            mWorkoutSession = try HKWorkoutSession(healthStore: mHealthStore, configuration: configuration)
+            mWorkoutBuilder = mWorkoutSession?.associatedWorkoutBuilder()
+            mWorkoutSession?.delegate = self
+            mWorkoutBuilder?.dataSource = HKLiveWorkoutDataSource(
+                healthStore: mHealthStore,
                 workoutConfiguration: configuration
             )
-            
-            workoutSession?.startActivity(with: Date())
-            workoutBuilder?.beginCollection(withStart: Date()) { success, error in
+            mWorkoutSession?.startActivity(with: Date())
+            mWorkoutBuilder?.beginCollection(withStart: Date()) { _, error in
                 if let error = error {
                     print("Error starting workout builder: \(error.localizedDescription)")
                 }
@@ -135,117 +127,81 @@ class MotionManager: NSObject, ObservableObject {
     }
 
     private func endWorkoutSession() {
-        // Skip in simulator
         #if targetEnvironment(simulator)
         return
         #endif
         
-        workoutSession?.end()
-        workoutBuilder?.endCollection(withEnd: Date()) { success, error in
+        mWorkoutSession?.end()
+        mWorkoutBuilder?.endCollection(withEnd: Date()) { success, _ in
             if success {
-                self.workoutBuilder?.finishWorkout { workout, error in
-                    // Workout finished
-                }
+                self.mWorkoutBuilder?.finishWorkout { _, _ in }
             }
         }
     }
     
     private func processMotion(_ data: CMDeviceMotion) {
-        guard Date().timeIntervalSince(lastGestureTime) > GESTURE_COOLDOWN else {
-            return
-        }
-        
+        guard Date().timeIntervalSince(mLastGestureTime) > GESTURE_COOLDOWN else { return }
         detectTwist(data)
         detectUpsideDown(data)
     }
     
     private func detectTwist(_ data: CMDeviceMotion) {
-        let rotationRate = data.rotationRate.z
-        let absRotation = abs(rotationRate)
+        let absRotation = abs(data.rotationRate.z)
         
-        // Track peak rotation during flick
-        if absRotation > peakRotationRate {
-            peakRotationRate = absRotation
-        }
+        if absRotation > mPeakRotationRate { mPeakRotationRate = absRotation }
         
-        // Start tracking when threshold exceeded
         if absRotation > TWIST_THRESHOLD {
-            if twistStartTime == nil {
-                twistStartTime = Date()
-            }
-        } else if let startTime = twistStartTime {
-            // Motion fell below threshold - check if it was a valid flick
+            if mTwistStartTime == nil { mTwistStartTime = Date() }
+        } else if let startTime = mTwistStartTime {
             let duration = Date().timeIntervalSince(startTime)
-            
-            if duration >= MIN_TWIST_DURATION && peakRotationRate > TWIST_THRESHOLD {
-                // Valid flick detected - determine direction
+            if duration >= MIN_TWIST_DURATION && mPeakRotationRate > TWIST_THRESHOLD {
                 let shouldReverse = (isLeftWrist != (appState?.isFlickDirectionReversed ?? false))
-                let direction = peakRotationRate > 0
-                
+                let direction = mPeakRotationRate > 0
                 if shouldReverse {
                     triggerGesture(direction ? .nextTrack : .previousTrack)
                 } else {
                     triggerGesture(direction ? .previousTrack : .nextTrack)
                 }
             }
-            
-            // Reset tracking
-            twistStartTime = nil
-            peakRotationRate = 0.0
+            mTwistStartTime = nil
+            mPeakRotationRate = 0.0
         }
     }
     
     private func detectUpsideDown(_ data: CMDeviceMotion) {
-        let gravity = data.gravity.z
-        
-        if gravity > UPSIDE_DOWN_THRESHOLD {
-            if upsideDownStartTime == nil {
-                upsideDownStartTime = Date()
-            } else if let startTime = upsideDownStartTime,
+        if data.gravity.z > UPSIDE_DOWN_THRESHOLD {
+            if mUpsideDownStartTime == nil {
+                mUpsideDownStartTime = Date()
+            } else if let startTime = mUpsideDownStartTime,
                       Date().timeIntervalSince(startTime) >= UPSIDE_DOWN_HOLD_TIME {
                 triggerGesture(.playPause)
-                upsideDownStartTime = nil
+                mUpsideDownStartTime = nil
             }
         } else {
-            upsideDownStartTime = nil
+            mUpsideDownStartTime = nil
         }
     }
     
     private func triggerGesture(_ gesture: GestureType) {
-        // 1. Update Local State
-        lastGesture = gesture
-        lastGestureTime = Date()
-        
-        // 2. Local Haptic Feedback
+        mLastGesture = gesture
+        mLastGestureTime = Date()
         WKInterfaceDevice.current().play(.click)
         
-        // 3. Map gesture to command
-        var commandToSend: MediaCommand?
-        
+        let command: MediaCommand?
         switch gesture {
-        case .nextTrack:
-            commandToSend = .nextTrack
-        case .previousTrack:
-            commandToSend = .previousTrack
-        case .playPause:
-            commandToSend = .playPause
-        case .none:
-            commandToSend = nil
+        case .nextTrack:     command = .nextTrack
+        case .previousTrack: command = .previousTrack
+        case .playPause:     command = .playPause
+        case .none:          command = nil
         }
         
-        // 4. Send to iPhone
-        if let command = commandToSend {
-            print("⌚️ Gesture detected: \(gesture)")
-            print("⌚️ WCSession activated: \(WCSession.default.activationState.rawValue)")
-            print("⌚️ WCSession reachable: \(WCSession.default.isReachable)")
-            print("⌚️ Sending command: \(command.rawValue)")
-            
+        if let command = command {
+            print("⌚️ Sending \(command.rawValue) (session reachable: \(WCSession.default.isReachable))")
             WatchConnectivityManager.shared.sendMediaCommand(command)
         }
         
-        // 5. Reset state
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { [weak self] in
-            self?.lastGesture = .none
+            self?.mLastGesture = .none
         }
     }
 }
@@ -261,15 +217,9 @@ extension MotionManager: HKWorkoutSessionDelegate {
         DispatchQueue.main.async {
             switch toState {
             case .running, .prepared:
-                // Resume sensors if OS unpauses Flick
-                print("⌚️ Session resumed")
                 self.resumeMonitoring()
-                
             case .paused, .ended, .stopped, .notStarted:
-                // Kill sensors immediately to save battery
-                print("⌚️ Session paused/ended by system")
-                self.motion.stopDeviceMotionUpdates()
-                
+                self.mMotion.stopDeviceMotionUpdates()
             @unknown default:
                 break
             }
@@ -278,6 +228,6 @@ extension MotionManager: HKWorkoutSessionDelegate {
     
     func workoutSession(_ workoutSession: HKWorkoutSession, didFailWithError error: Error) {
         print("Workout session failed: \(error.localizedDescription)")
-        motion.stopDeviceMotionUpdates()
+        mMotion.stopDeviceMotionUpdates()
     }
 }

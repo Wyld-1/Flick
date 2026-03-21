@@ -21,8 +21,7 @@ enum PlaybackMethod: String, Codable {
     case shortcuts
 }
 
-// Data collection state - SINGLE SOURCE OF TRUTH
-// iPhone controls this, Watch observes and responds
+// iPhone controls this state; Watch observes and responds
 enum DataCollectionState: String, Codable {
     case off        // Not collecting data
     case recording  // Watch is collecting sensor data  
@@ -73,7 +72,6 @@ struct AppSettings: Codable {
     // Data collection state - iPhone controls, Watch observes
     var dataCollectionState: DataCollectionState
     
-    // Update default initializer
     static let `default` = AppSettings(
         isTapEnabled: false,
         isFlickDirectionReversed: false,
@@ -86,16 +84,16 @@ struct AppSettings: Codable {
 
 // Helper to read/write settings via App Groups
 class SharedSettings {
-    private static let appGroupID = "group.flickplayback.SharedFiles"
-    private static let settingsKey = "appSettings"
+    private static let APP_GROUP_ID = "group.flickplayback.SharedFiles"
+    private static let SETTINGS_KEY = "appSettings"
     
     private static var userDefaults: UserDefaults? {
-        UserDefaults(suiteName: appGroupID)
+        UserDefaults(suiteName: APP_GROUP_ID)
     }
     
     static func load() -> AppSettings {
         guard let defaults = userDefaults,
-              let data = defaults.data(forKey: settingsKey),
+              let data = defaults.data(forKey: SETTINGS_KEY),
               let settings = try? JSONDecoder().decode(AppSettings.self, from: data) else {
             return .default
         }
@@ -107,9 +105,7 @@ class SharedSettings {
               let data = try? JSONEncoder().encode(settings) else {
             return
         }
-        defaults.set(data, forKey: settingsKey)
-        
-        // Notify Watch Connectivity to sync if needed
+        defaults.set(data, forKey: SETTINGS_KEY)
         WatchConnectivityManager.shared.syncSettings(settings)
     }
 }

@@ -19,7 +19,7 @@ class AppStateManager: ObservableObject {
     @Published var isFlickDirectionReversed: Bool
     @Published var playbackMethod: PlaybackMethod
     
-    private var settingsObserver: NSObjectProtocol?
+    private var mSettingsObserver: NSObjectProtocol?
     
     init() {
         let wristLocation = WKInterfaceDevice.current().wristLocation
@@ -34,8 +34,7 @@ class AppStateManager: ObservableObject {
         let hasCompletedWelcome = UserDefaults.standard.bool(forKey: "hasCompletedWelcome")
         self.currentState = hasCompletedWelcome ? .main : .welcome
         
-        // Listen for settings updates from iPhone
-        settingsObserver = NotificationCenter.default.addObserver(
+        mSettingsObserver = NotificationCenter.default.addObserver(
             forName: NSNotification.Name("SettingsDidUpdate"),
             object: nil,
             queue: .main
@@ -45,12 +44,11 @@ class AppStateManager: ObservableObject {
     }
     
     deinit {
-        if let observer = settingsObserver {
+        if let observer = mSettingsObserver {
             NotificationCenter.default.removeObserver(observer)
         }
     }
     
-    // Explicitly save when toggle changes
     func saveSettings() {
         var settings = SharedSettings.load()
         settings.isTapEnabled = self.isTapEnabled
@@ -61,7 +59,6 @@ class AppStateManager: ObservableObject {
         print("⌚️ Settings saved to SharedSettings")
     }
     
-    // Explicitly load when view appears
     func loadSettings() {
         let settings = SharedSettings.load()
         self.isTapEnabled = settings.isTapEnabled

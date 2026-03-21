@@ -81,7 +81,7 @@ struct DataCollectionView: View {
                 }
             }
             
-            // MARK: - Fixed Bottom Control (FIXED GRAY RECTANGLE)
+            // MARK: - Fixed Bottom Control
             VStack {
                 Spacer()
                 VStack(spacing: 0) {
@@ -111,7 +111,6 @@ struct DataCollectionView: View {
                     .padding(.top, 25)
                     .padding(.bottom, 40) // Increased for better thumb reach
                 }
-                // THE FIX: Adding the background to the VStack and ignoring safe area
                 .background(
                     Color.black.opacity(0.85)
                         .background(.ultraThinMaterial)

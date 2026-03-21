@@ -36,13 +36,9 @@ struct FlickApp: App {
             }
             .animation(.easeInOut(duration: 0.4), value: appState.currentState)
             .environmentObject(appState)
-            // Catch Spotify callback URL
+            // Handle Spotify OAuth callback
             .onOpenURL { url in
-                print("🔗 Received URL: \(url)")
-                
-                // Check if it's a Spotify callback
                 if url.scheme == "flick" {
-                    print("🎯 Spotify callback detected!")
                     iOSMediaManager.shared.handleSpotifyURL(url)
                 } else {
                     print("⚠️ Unknown URL scheme: \(url.scheme ?? "nil")")

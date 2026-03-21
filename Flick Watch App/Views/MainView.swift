@@ -108,13 +108,10 @@ struct MainView: View {
             motionManager.isLeftWrist = appState.isLeftWrist
             motionManager.appState = appState
         }
-        .onChange(of: motionManager.lastGesture) { oldValue, newValue in
-            // Update local state when gesture detected
+        .onChange(of: motionManager.mLastGesture) { oldValue, newValue in
             withAnimation {
                 lastGesture = newValue
             }
-            
-            // If gesture was detected (not .none), auto-hide after a delay
             if newValue != .none {
                 DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(GESTURE_DETECTED_ICON_TIME)) {
                     withAnimation {
