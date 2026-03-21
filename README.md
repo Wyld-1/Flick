@@ -1,17 +1,15 @@
-**README.md**
-
 # Flick
 Flick is the second version of a gesture-based music controller built for Apple Watch. The goal is to remove the need to open your device or fumble with tiny buttons when you just want to skip a song.
 
 ---
-## Almost in beta!
+## Almost In Beta!
 
-**Looking for beta testers to collect ML training data!**
-Our first TestFlight version is coming soon. Skip to **Contributing to ML Training** to learn more.
+**TestFlight release** is coming soon! We are looking for beta testers to collect ML training data.
+See the *Contributing to ML Training* for details.
 
 ---
 
-## How It Works
+## How Flick Works
 
 Three natural wrist movements control your media:
 
@@ -21,13 +19,22 @@ Three natural wrist movements control your media:
 
 The Watch continuously monitors motion sensors in the background. When you perform a gesture, it sends a command to your iPhone, which controls your active music player.
 
----
-
 ## Supported Music Players
 
 - **Apple Music** — Built-in, works immediately
 - **Spotify** — Full integration via Spotify Connect
-- **iOS Shortcuts** — Control any player you can automate
+- **iOS Shortcuts** — Control any player, but requiers iPhone to be unlocked. **DEBUG mode only**
+
+## Requierments
+
+- **iPhone**, running iOS 26.0+
+- **Apple Watch**, running watchOS 26.0+
+- Either an **Apple Music** or **Spotify** subscription
+
+**To install, either:**
+- **TestFlight** installed on your devices *(Coming soon)*
+- **Xcode** on your Mac, and **Developer Mode** enabled on both devices
+See the *Instalation* section for details.
 
 ---
 
@@ -53,6 +60,31 @@ The Watch continuously monitors motion sensors in the background. When you perfo
 - Custom CoreML model to replace hardcoded detection logic
 - Public TestFlight beta (targeting mid-2026)
 - App Store release (targeting late 2026)
+
+---
+
+## Contributing to ML Training
+
+After installing Flick:
+
+1. Open the iPhone app
+2. Navigate to "Data Collection"
+3. Press "BEGIN RECORDING"
+4. Hold a gesture button (Flick Left/Right/Upside Down) while performing the motion
+5. Press "FINISH RECORDING" when done
+6. Share the generated CSV file via AirDrop, Files, or email
+
+**What we're collecting:**
+- Motion sensor data (rotation, gravity, acceleration) at 50Hz
+- Timestamped labels for which gesture was performed when
+- NO personal data, location, or media library information
+
+**Data format:**
+```csv
+timestamp,rotX,rotY,rotZ,gravX,gravY,gravZ,userAccelX,userAccelY,userAccelZ,label
+1710960123.45,0.1,0.2,-0.1,0.0,1.0,0.0,0.05,0.03,-0.02,None
+1710960123.46,0.5,-0.3,0.2,0.0,1.0,0.0,0.15,0.08,0.12,FlickLeft
+```
 
 ---
 
@@ -110,45 +142,6 @@ On Apple Watch:
 - **Watch doesn't appear:** Unplug iPhone, restart Xcode, plug back in
 - **Build fails:** Ensure both devices have Developer Mode enabled and are unlocked
 - **Gestures not working:** Real hardware required (simulator has no sensors)
-
----
-
-## Contributing to ML Training
-
-If you're a beta tester, you can help improve gesture detection accuracy. After installing:
-
-1. Open the iPhone app
-2. Navigate to "Data Collection"
-3. Press "BEGIN RECORDING"
-4. Hold a gesture button (Flick Left/Right/Upside Down) while performing the motion
-5. Press "FINISH RECORDING" when done
-6. Share the generated CSV file via AirDrop, Files, or email
-
-**What we're collecting:**
-- Motion sensor data (rotation, gravity, acceleration) at 50Hz
-- Timestamped labels for which gesture was performed when
-- NO personal data, location, or media library information
-
-**Data format:**
-```csv
-timestamp,rotX,rotY,rotZ,gravX,gravY,gravZ,userAccelX,userAccelY,userAccelZ,label
-1710960123.45,0.1,0.2,-0.1,0.0,1.0,0.0,0.05,0.03,-0.02,None
-1710960123.46,0.5,-0.3,0.2,0.0,1.0,0.0,0.15,0.08,0.12,FlickLeft
-```
-
----
-
-## Why Flick?
-
-**The problem:** Controlling music while skiing, biking, or running is annoying. Pulling out your phone is cold and impractical. Tapping AirPod stems with gloves doesn't work. Even the Apple Watch UI requires looking down.
-
-**The solution:** Physical gestures you can do without thinking. The iPod Shuffle had the right idea with tactile controls — Flick brings that simplicity to modern devices, but better: no buttons to find, no screen to see.
-
-**Design philosophy:**
-- **Confident, not subtle** — Gestures require clear intent to prevent accidents
-- **No screen required** — Haptic feedback confirms every action
-- **Memorable mapping** — Direction-based gestures (left/right = prev/next)
-- **Battery-conscious** — Only samples sensors at 20Hz, pauses when inactive
 
 ---
 
