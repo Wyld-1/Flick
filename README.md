@@ -3,65 +3,247 @@
 # Flick
 Flick is the second version of a gesture-based music controller built for Apple Watch. The goal is to remove the need to open your device or fumble with tiny buttons when you just want to skip a song.
 
-## How it works
-Use three simple wrist gestures control your media:
-- **Flick left**: Next track
-- **Flick right**: Previous track  
-- **Hold upside-down**: Play/Pause
+---
+## Almost in beta!
 
-The app uses your Watch's accelerometer and gyroscope to detect these movements, then sends a command to iPhone to take action.
-
-## Why I made this
-I wanted something dead simple for controlling music while skiing, biking, or being active. Pulling out my phone on the slopes is cold and annoying. Trying to tap AirPod controls with gloves on doesn't work all that great.
-The iPod Shuffle had the right idea with physical simplicity all those years ago, but I wanted to make it modern and take it a step further.
-
-## Current status
-Flick is fully functional with Apple Music and Spotify! Gestures are not untuned, so expect them to be over/under responsive.
-
-## Installation
-Want to test it yourself? Follow the steps below.
-
-**Step 1: Clone this repo into an Xcode project**
-
-- You must have Xcode 26.0 or later
-
-**Step 2: Pair the Watch with your iPhone**
-- The Watch must be paired to an iPhone first
-- That iPhone needs to be signed into the same Apple ID you're using in Xcode
-
-**Step 3: Connect the iPhone to your Mac**
-- Use a USB cable (or enable wireless debugging)
-- The Watch doesn't connect directly. Instead, it goes through the paired iPhone
-
-**Step 4: Enable Developer Mode on both devices**
-
-*On iPhone:*
-- Settings → Privacy & Security → Developer Mode → Turn ON
-- Restart iPhone when prompted
-
-*On Apple Watch:*
-- Settings → Privacy & Security → Developer Mode → Turn ON
-- Restart Watch when prompted
-
-**Step 5: Trust the computer**
-- When you plug in the iPhone, you'll get a "Trust This Computer" prompt
-- Tap Trust and enter passcode
-
-**Step 6: Select Watch as destination in Xcode**
-- At the top of Xcode (next to the play/stop buttons), click the device dropdown
-- You should see the iPhone and below it, the paired Apple Watch
-- Select the Watch (it'll say something like "Apple Watch Series X - [Owner's Name]'s Watch")
-
-**Troubleshooting:**
-- If Watch doesn't appear: Unplug iPhone, restart Xcode, plug back in
-- Make sure Watch and iPhone are both unlocked
-- Check that both have Developer Mode enabled
-- Sometimes it takes 30-60 seconds for Watch to show up after connecting
-
-**Wireless option (once set up):**
-- Window → Devices and Simulators
-- Select your iPhone → Check "Connect via network"
+**Looking for beta testers to collect ML training data!**
+Our first TestFlight version is coming soon. Skip to **Contributing to ML Training** to learn more.
 
 ---
 
-Flick is made for people who don't want to break their flow just to skip a song.
+## How It Works
+
+Three natural wrist movements control your media:
+
+- **Flick left** (counterclockwise twist) → Next track
+- **Flick right** (clockwise twist) → Previous track  
+- **Hold upside-down** (rotate wrist 180°, hold 1.2s) → Play/Pause
+
+The Watch continuously monitors motion sensors in the background. When you perform a gesture, it sends a command to your iPhone, which controls your active music player.
+
+---
+
+## Supported Music Players
+
+- **Apple Music** — Built-in, works immediately
+- **Spotify** — Full integration via Spotify Connect
+- **iOS Shortcuts** — Control any player you can automate
+
+---
+
+## Current Status
+
+**TestFlight Beta app coming soon!**
+**Phase:** Collecting sensor data to train a gesture-detection ML model
+**Version:** 1.3 (March 2026)
+
+### ✅ What Works
+- Real-time gesture detection on Apple Watch
+- Media playback control (Apple Music, Spotify, Shortcuts)
+- Background execution during activity
+- Bidirectional settings sync between devices
+- ML training data collection pipeline
+
+### 🔧 In Progress
+- Training custom ML model for gesture recognition (currently uses hardcoded thresholds)
+- Collecting labeled sensor data from beta testers
+- Tuning detection accuracy across different users
+
+### 🎯 What's Next
+- Custom CoreML model to replace hardcoded detection logic
+- Public TestFlight beta (targeting mid-2026)
+- App Store release (targeting late 2026)
+
+---
+
+## Installation (For Beta Testers)
+
+**TestFlight app coming soon!**
+
+### Prerequisites
+- Xcode 26.0 or later
+- Apple Watch (Series 4+) running watchOS 26+
+- iPhone running iOS 26+
+- Apple Developer account (free tier works)
+
+### Setup Steps
+
+**1. Clone the repository**
+```bash
+git clone https://github.com/yourusername/flick.git
+cd flick
+```
+
+**2. Pair your Watch with your iPhone**
+- The Watch must be paired to the iPhone you'll use for testing
+- Both devices must be signed into the same Apple ID
+
+**3. Connect iPhone to your Mac**
+- Use USB cable or enable wireless debugging
+- The Watch connects *through* the paired iPhone
+
+**4. Enable Developer Mode**
+
+On iPhone:
+- Settings → Privacy & Security → Developer Mode → Turn ON
+- Restart when prompted
+
+On Apple Watch:
+- Settings → Privacy & Security → Developer Mode → Turn ON
+- Restart when prompted
+
+**5. Trust your computer**
+- When you plug in the iPhone, tap "Trust This Computer"
+- Enter iPhone passcode
+
+**6. Select Watch as build target**
+- Open `Flick.xcodeproj` in Xcode
+- In the toolbar, click the device dropdown
+- Select your Apple Watch (appears under your iPhone's name)
+
+**7. Build and run**
+- Press ⌘R or click the play button
+- App will install on both iPhone and Watch
+- Follow the onboarding flow to grant permissions
+
+### Troubleshooting
+- **Watch doesn't appear:** Unplug iPhone, restart Xcode, plug back in
+- **Build fails:** Ensure both devices have Developer Mode enabled and are unlocked
+- **Gestures not working:** Real hardware required (simulator has no sensors)
+
+---
+
+## Contributing to ML Training
+
+If you're a beta tester, you can help improve gesture detection accuracy. After installing:
+
+1. Open the iPhone app
+2. Navigate to "Data Collection"
+3. Press "BEGIN RECORDING"
+4. Hold a gesture button (Flick Left/Right/Upside Down) while performing the motion
+5. Press "FINISH RECORDING" when done
+6. Share the generated CSV file via AirDrop, Files, or email
+
+**What we're collecting:**
+- Motion sensor data (rotation, gravity, acceleration) at 50Hz
+- Timestamped labels for which gesture was performed when
+- NO personal data, location, or media library information
+
+**Data format:**
+```csv
+timestamp,rotX,rotY,rotZ,gravX,gravY,gravZ,userAccelX,userAccelY,userAccelZ,label
+1710960123.45,0.1,0.2,-0.1,0.0,1.0,0.0,0.05,0.03,-0.02,None
+1710960123.46,0.5,-0.3,0.2,0.0,1.0,0.0,0.15,0.08,0.12,FlickLeft
+```
+
+---
+
+## Why Flick?
+
+**The problem:** Controlling music while skiing, biking, or running is annoying. Pulling out your phone is cold and impractical. Tapping AirPod stems with gloves doesn't work. Even the Apple Watch UI requires looking down.
+
+**The solution:** Physical gestures you can do without thinking. The iPod Shuffle had the right idea with tactile controls — Flick brings that simplicity to modern devices, but better: no buttons to find, no screen to see.
+
+**Design philosophy:**
+- **Confident, not subtle** — Gestures require clear intent to prevent accidents
+- **No screen required** — Haptic feedback confirms every action
+- **Memorable mapping** — Direction-based gestures (left/right = prev/next)
+- **Battery-conscious** — Only samples sensors at 20Hz, pauses when inactive
+
+---
+
+## Architecture Overview
+
+```
+Apple Watch (watchOS)
+├── MotionManager: Reads sensors, detects gestures
+├── DataCollectionManager: Records training data
+└── WatchConnectivityManager: Sends commands to iPhone
+
+iPhone (iOS)
+├── iOSMediaManager: Controls music players
+├── DataCollectionCoordinator: Labels training data
+└── WatchConnectivityManager: Receives commands from Watch
+
+Shared (CommunicationFramework)
+├── SharedTypes: Single source of truth for types
+└── App Groups: Settings sync between devices
+```
+
+**Key data flows:**
+1. **Gesture → Playback:** Watch detects motion → Sends MediaCommand → iPhone controls player
+2. **ML Data Collection:** Watch records sensors → Transfers to iPhone → iPhone labels + exports CSV
+
+For detailed architecture documentation, see [`Docs/ARCHITECTURE.md`](Docs/ARCHITECTURE.md).
+
+---
+
+## Project Structure
+
+```
+Flick/
+├── Docs/                      # Development documentation
+│   ├── OVERVIEW.md           # Product vision and philosophy
+│   ├── ARCHITECTURE.md       # System design and data flows
+│   ├── STATUS.md             # Current build state and bugs
+│   ├── ROADMAP.md            # Feature roadmap and phases
+│   └── SESSION_LOG.md        # Development session history
+│
+├── CommunicationFramework/    # Shared iOS/watchOS code
+│   ├── SharedTypes.swift     # Type definitions
+│   └── WatchConnectivityManager.swift
+│
+├── Flick/                     # iPhone app (iOS)
+│   ├── Managers/
+│   │   ├── iOSMediaManager.swift
+│   │   └── DataCollectionCoordinator.swift
+│   └── Views/
+│
+├── Flick Watch App/           # Watch app (watchOS)
+│   ├── Managers/
+│   │   ├── MotionManager.swift
+│   │   └── DataCollectionManager.swift
+│   └── Views/
+│
+└── README.md                  # This file
+```
+
+---
+
+## Technical Stack
+
+- **Language:** Swift 5.9+
+- **Platforms:** watchOS 26+, iOS 26+
+- **Frameworks:**
+  - CoreMotion (sensor reading)
+  - HealthKit (background execution)
+  - WatchConnectivity (device communication)
+  - MediaPlayer (Apple Music control)
+  - Spotify iOS SDK 5.0.1 (Spotify control)
+- **Future:** CoreML (gesture recognition model)
+
+---
+
+## Documentation
+
+**For developers:**
+- [**OVERVIEW**](Docs/OVERVIEW.md) — Product vision, gesture philosophy
+- [**ARCHITECTURE**](Docs/ARCHITECTURE.md) — System design, data flows, communication patterns
+- [**STATUS**](Docs/STATUS.md) — Current build state, working/broken features *(Start here!)*
+- [**ROADMAP**](Docs/ROADMAP.md) — Feature phases and completion status
+- [**SESSION_LOG**](Docs/SESSION_LOG.md) — Development history and key decisions
+
+**Quick links:**
+- [Bug log](Docs/STATUS.md#-bug-log)
+- [Known issues](Docs/STATUS.md#️-partially-working--known-issues)
+- [ML training pipeline](Docs/ARCHITECTURE.md#ml-data-collection-pipeline)
+
+---
+
+## License
+
+*To be determined — project currently in private development.*
+
+---
+
+**Flick is made for people who don't want to break their flow just to skip a song.**

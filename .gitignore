@@ -1,2 +1,7 @@
 *.xcuserstate
 xcuserdata/
+
+# Google Service Account Keys (NEVER COMMIT!)
+*service-account*.json
+*.iam.gserviceaccount.com.json
+flick-ml-training-*.json
