@@ -10,6 +10,7 @@ import SwiftUI
 struct MainView: View {
     @EnvironmentObject var appState: AppStateManager
     @State private var showSettings = false
+    @State private var showDataCollection = false
     @State private var showHelpSheet = false
     @State private var lastCommand: MediaCommand = .playPause
     @State private var commandTimestamp = Date()
@@ -52,47 +53,71 @@ struct MainView: View {
                 Spacer()
                 
                 HStack(spacing: 16) {
-                    Spacer()
-                    
                     // Watch status dock
                     GlassStatusDock(showHelp: $showHelpSheet)
                     
-                    // Settings button
-                    Button(action: {
-                        HapticManager.shared.playImpact()
-                        showSettings = true
-                    }) {
-                        Image(systemName: "gearshape.fill")
-                            .font(.system(size: 24, weight: .semibold))
-                            .foregroundStyle(.white.opacity(0.9))
-                            .frame(width: 64, height: 64)
-                            .background(.ultraThinMaterial)
-                            .clipShape(Circle())
-                            .overlay(
-                                Circle()
-                                    .stroke(
-                                        LinearGradient(
-                                            stops: [
-                                                .init(color: .white.opacity(0.4), location: 0),
-                                                .init(color: .white.opacity(0.1), location: 0.5),
-                                                .init(color: .white.opacity(0.05), location: 1)
-                                            ],
-                                            startPoint: .top,
-                                            endPoint: .bottom
-                                        ),
-                                        lineWidth: 1
-                                    )
-                            )
-                            .shadow(color: .black.opacity(0.3), radius: 20, x: 0, y: 10)
+                    HStack(spacing: 0) {
+                        // Training Data Button
+                        Button(action: {
+                            HapticManager.shared.playImpact()
+                            showDataCollection = true
+                        }) {
+                            Image(systemName: "cpu.fill")
+                                .font(.system(size: 18, weight: .semibold))
+                                .foregroundStyle(.white.opacity(0.9))
+                                .frame(width: 48, height: 48)
+                        }
+                        
+                        // Vertical Divider
+                        Rectangle()
+                            .fill(.gray.opacity(0.5))
+                            .frame(width: 1, height: 16)
+                            .padding(.horizontal, 4)
+                        
+                        // Settings Button
+                        Button(action: {
+                            HapticManager.shared.playImpact()
+                            showSettings = true
+                        }) {
+                            Image(systemName: "gearshape.fill")
+                                .font(.system(size: 18, weight: .semibold))
+                                .foregroundStyle(.white.opacity(0.9))
+                                .frame(width: 48, height: 48)
+                        }
                     }
+                    .background(.ultraThinMaterial)
+                    .clipShape(Capsule())
+                    .overlay(
+                        Capsule()
+                            .stroke(
+                                LinearGradient(
+                                    stops: [
+                                        .init(color: .white.opacity(0.4), location: 0),
+                                        .init(color: .white.opacity(0.1), location: 0.5),
+                                        .init(color: .white.opacity(0.05), location: 1)
+                                    ],
+                                    startPoint: .top,
+                                    endPoint: .bottom
+                                ),
+                                lineWidth: 1
+                            )
+                    )
+                    .shadow(color: .black.opacity(0.3), radius: 20, x: 0, y: 10)
                     .buttonStyle(ScaleButtonStyle())
                 }
                 .padding(.horizontal, 24)
-                .padding(.bottom, 0) // Adjusts vertical position
+                .padding(.bottom, 0)
             }
         }
         .sheet(isPresented: $showSettings) {
             SettingsView()
+        }
+        
+        // Training Data sheet
+        .sheet(isPresented: $showDataCollection) {
+            NavigationStack {
+                DataCollectionView()
+            }
         }
         
         // Diagnostics sheet

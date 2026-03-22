@@ -56,6 +56,22 @@ struct SettingsView: View {
                     Text("Gestures")
                 }
                 
+                // MARK: - Machine Learning Section
+                Section {
+                    NavigationLink(destination: DataCollectionView()) {
+                        SettingsRow(
+                            icon: "cpu.fill",
+                            color: .black,
+                            title: "Collect Training Data"
+                        ) {
+                        }
+                    }
+                } header: {
+                    Text("Machine Learning")
+                } footer: {
+                    Text("Collect sensor data to train Flick.")
+                }
+                
                 // MARK: - Playback Source Section
                 Section {
                     // Custom Icon Row for Player Selection
@@ -102,7 +118,7 @@ struct SettingsView: View {
                     
                     // --- Conditional Sub-Options ---
                     
-                    // 1. SHORTCUTS SETUP
+                    // Shorcuts setup
                     if settings.playbackMethod == .shortcuts {
                         Button(action: {
                             HapticManager.shared.playImpact()
@@ -139,7 +155,7 @@ struct SettingsView: View {
                         }
                     }
                     
-                    // 2. SPOTIFY STATUS & RE-AUTH
+                    // Spotify status & re-auth
                     if settings.playbackMethod == .spotify {
                         // Authentication Status
                         SettingsRow(
@@ -185,22 +201,6 @@ struct SettingsView: View {
                     }
                 }
                 
-                // MARK: - Machine Learning Section
-                Section {
-                    NavigationLink(destination: DataCollectionView()) {
-                        SettingsRow(
-                            icon: "brain.head.profile",
-                            color: .purple,
-                            title: "Collect Training Data"
-                        ) {
-                        }
-                    }
-                } header: {
-                    Text("Machine Learning")
-                } footer: {
-                    Text("Collect sensor data to train Flick.")
-                }
-                
                 // MARK: - About Section
                 Section {
                     HStack {
@@ -228,7 +228,7 @@ struct SettingsView: View {
                 } header: {
                     Text("About")
                 } footer: {
-                    Text("Created by Wyld-1 for the wild ones.")
+                    Text("Created by Wyld-1, for the wild ones.")
                 }
                 
                 // MARK: - Debug Section

@@ -55,11 +55,13 @@ struct ScaleButtonStyle: ButtonStyle {
 }
 
 struct VividGlassButtonStyle: ButtonStyle {
+    var color: Color = .orange
+    
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .padding(.vertical, 18)
             .padding(.horizontal, 24)
-            .background(Color.orange)
+            .background(color) // Use dynamic color
             .clipShape(Capsule())
             .overlay(
                 Capsule()
@@ -121,11 +123,11 @@ struct GlassStatusDock: View {
                     .padding(.horizontal, 4)
                 
                 Image(systemName: "questionmark.circle")
-                    .font(.system(size: 16, weight: .semibold))
-                    .foregroundStyle(.white.opacity(0.8))
+                    .font(.system(size: 18, weight: .semibold))
+                    .foregroundStyle(.white.opacity(0.9))
+                    .frame(width: 8, height: 48)
             }
             .padding(.horizontal, 20)
-            .padding(.vertical, 14)
             .background(.ultraThinMaterial)
             .clipShape(Capsule())
             .overlay(
@@ -157,5 +159,93 @@ struct GlassStatusDock: View {
         .onAppear {
             previousConnection = isConnected
         }
+    }
+}
+
+// MARK: - Flick Service Card
+struct FlickServiceCard: View {
+    var isSelected: Bool
+    var title: String
+    var description: String
+    var iconName: String
+    var isSystemIcon: Bool = true
+    var color: Color
+    var isEnabled: Bool = true
+    var action: (() -> Void)? = nil // Optional for standard buttons
+    
+    var body: some View {
+        Button(action: {
+            if isEnabled { action?() }
+        }) {
+            HStack(spacing: 16) {
+                // Icon Box
+                ZStack {
+                    RoundedRectangle(cornerRadius: 12)
+                        .fill(isSelected ? color.opacity(0.1) : Color.white.opacity(0.05))
+                        .frame(width: 50, height: 50)
+                    
+                    if isSystemIcon {
+                        Image(systemName: iconName)
+                            .font(.system(size: 22, weight: .semibold))
+                            .foregroundStyle(isSelected ? color : .gray)
+                    } else {
+                        Image(iconName)
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 38, height: 38)
+                            .saturation(isSelected ? 1.0 : 0.0)
+                            .opacity(isSelected ? 1.0 : 0.6)
+                    }
+                }
+                
+                // Text Info
+                VStack(alignment: .leading, spacing: 4) {
+                    Text(title)
+                        .font(.headline)
+                        .foregroundStyle(.white)
+                    
+                    Text(description)
+                        .font(.caption)
+                        .fontWeight(.medium)
+                        .foregroundStyle(isSelected ? color : .gray)
+                }
+                
+                Spacer()
+                
+                // Selection Indicator
+                if isSelected {
+                    Image(systemName: "checkmark.circle.fill")
+                        .font(.title2)
+                        .foregroundStyle(color)
+                        .transition(.scale.combined(with: .opacity))
+                } else {
+                    Circle()
+                        .stroke(Color.white.opacity(0.1), lineWidth: 2)
+                        .frame(width: 24, height: 24)
+                }
+            }
+            .padding(18)
+            .background {
+                ZStack {
+                    if isSelected {
+                        RoundedRectangle(cornerRadius: 20)
+                            .fill(color)
+                            .blur(radius: 9)
+                            .opacity(0.55)
+                            .padding(-8)
+                    }
+                    
+                    RoundedRectangle(cornerRadius: 20)
+                        .fill(isSelected ? color.opacity(0.2) : Color.white.opacity(0.05))
+                }
+            }
+            .overlay(
+                RoundedRectangle(cornerRadius: 20)
+                    .stroke(isSelected ? color : Color.white.opacity(0.08), lineWidth: isSelected ? 2.5 : 1)
+            )
+        }
+        .buttonStyle(ScaleButtonStyle())
+        .disabled(!isEnabled || action == nil)
+        .opacity(isEnabled ? 1.0 : 0.5)
     }
 }
