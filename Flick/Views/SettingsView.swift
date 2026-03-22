@@ -157,7 +157,6 @@ struct SettingsView: View {
                     
                     // Spotify status & re-auth
                     if settings.playbackMethod == .spotify {
-                        // Authentication Status
                         SettingsRow(
                             icon: spotifyAuthStatus ? "shield.lefthalf.filled.badge.checkmark" : "shield.lefthalf.filled.slash",
                             color: spotifyAuthStatus ? .green : .red,
@@ -170,11 +169,7 @@ struct SettingsView: View {
                         
                         Button(action: {
                             HapticManager.shared.playImpact()
-                            Task {
-                                await MainActor.run {
-                                    iOSMediaManager.shared.appRemote.authorizeAndPlayURI("")
-                                }
-                            }
+                            Task { await iOSMediaManager.shared.authorizeSpotify() }
                         }) {
                             SettingsRow(
                                 icon: "key.shield.fill",
@@ -302,9 +297,8 @@ struct SettingsView: View {
         SharedSettings.save(settings)
     }
     
-    // Check Spotify auth status
     private var spotifyAuthStatus: Bool {
-        iOSMediaManager.shared.hasValidToken || iOSMediaManager.shared.appRemote.isConnected
+        iOSMediaManager.shared.hasValidToken
     }
     
     private var currentIconName: String {

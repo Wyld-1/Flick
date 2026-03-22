@@ -204,10 +204,12 @@ struct FlickServiceCard: View {
                         .font(.headline)
                         .foregroundStyle(.white)
                     
-                    Text(description)
-                        .font(.caption)
-                        .fontWeight(.medium)
-                        .foregroundStyle(isSelected ? color : .gray)
+                    if description != "" {
+                        Text(description)
+                            .font(.caption)
+                            .fontWeight(.medium)
+                            .foregroundStyle(isSelected ? color : .gray)
+                    }
                 }
                 
                 Spacer()

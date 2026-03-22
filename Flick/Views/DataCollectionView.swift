@@ -147,9 +147,11 @@ struct DataCollectionView: View {
             .animation(.snappy, value: dataCollector.isSyncing)
         }
         .preferredColorScheme(.dark)
+        
+        // Diagnostics sheet
         .sheet(isPresented: $showHelpSheet) {
             ConnectionHelpView()
-                .presentationDetents([.height(230)])
+                .presentationDetents([.height(230), .large])
                 .presentationDragIndicator(.visible)
         }
     }

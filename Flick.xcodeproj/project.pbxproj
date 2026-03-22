@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		230C536F2F3D7EE000D00B19 /* SpotifyiOS.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 230C536C2F3D7E8E00D00B19 /* SpotifyiOS.xcframework */; };
-		230C53702F3D7EE000D00B19 /* SpotifyiOS.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 230C536C2F3D7E8E00D00B19 /* SpotifyiOS.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		235266792F350B010071AD79 /* Flick Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 235266782F350B010071AD79 /* Flick Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		235266C62F3517110071AD79 /* SharedTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235266C52F3517060071AD79 /* SharedTypes.swift */; };
 		235266CA2F35195D0071AD79 /* WatchConnectivityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235266C92F35188E0071AD79 /* WatchConnectivityManager.swift */; };
@@ -61,7 +59,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				230C53702F3D7EE000D00B19 /* SpotifyiOS.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -80,116 +77,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		230C52E92F3D7E8E00D00B19 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		230C52EA2F3D7E8E00D00B19 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		230C52EB2F3D7E8E00D00B19 /* ConnectionStatusIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionStatusIndicatorView.swift; sourceTree = "<group>"; };
-		230C52EC2F3D7E8E00D00B19 /* ContentCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentCollectionViewController.swift; sourceTree = "<group>"; };
-		230C52ED2F3D7E8E00D00B19 /* ContentItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentItemCell.swift; sourceTree = "<group>"; };
-		230C52EE2F3D7E8E00D00B19 /* host.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = host.entitlements; sourceTree = "<group>"; };
-		230C52EF2F3D7E8E00D00B19 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		230C52F02F3D7E8E00D00B19 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		230C52F22F3D7E8E00D00B19 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		230C52F42F3D7E8E00D00B19 /* My-Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "My-Extensions.swift"; sourceTree = "<group>"; };
-		230C52F52F3D7E8E00D00B19 /* PlaybackButtonGraphics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaybackButtonGraphics.swift; sourceTree = "<group>"; };
-		230C52F62F3D7E8E00D00B19 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		230C52F72F3D7E8E00D00B19 /* SpeedPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedPickerViewController.swift; sourceTree = "<group>"; };
-		230C52F82F3D7E8E00D00B19 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		230C52FA2F3D7E8E00D00B19 /* project.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = project.yml; sourceTree = "<group>"; };
-		230C52FB2F3D7E8E00D00B19 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		230C52FD2F3D7E8E00D00B19 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		230C52FE2F3D7E8E00D00B19 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		230C52FF2F3D7E8E00D00B19 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		230C53002F3D7E8E00D00B19 /* ConnectButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConnectButton.h; sourceTree = "<group>"; };
-		230C53012F3D7E8E00D00B19 /* ConnectButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConnectButton.m; sourceTree = "<group>"; };
-		230C53022F3D7E8E00D00B19 /* ConnectView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConnectView.h; sourceTree = "<group>"; };
-		230C53032F3D7E8E00D00B19 /* ConnectView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConnectView.m; sourceTree = "<group>"; };
-		230C53042F3D7E8E00D00B19 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		230C53052F3D7E8E00D00B19 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		230C53072F3D7E8E00D00B19 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		230C53082F3D7E8E00D00B19 /* SceneDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneDelegate.h; sourceTree = "<group>"; };
-		230C53092F3D7E8E00D00B19 /* SceneDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SceneDelegate.m; sourceTree = "<group>"; };
-		230C530A2F3D7E8E00D00B19 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		230C530B2F3D7E8E00D00B19 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		230C530D2F3D7E8E00D00B19 /* project.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = project.yml; sourceTree = "<group>"; };
-		230C530E2F3D7E8E00D00B19 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		230C53102F3D7E8E00D00B19 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		230C53112F3D7E8E00D00B19 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		230C53122F3D7E8E00D00B19 /* ConnectButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectButton.swift; sourceTree = "<group>"; };
-		230C53132F3D7E8E00D00B19 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		230C53142F3D7E8E00D00B19 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		230C53162F3D7E8E00D00B19 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		230C53172F3D7E8E00D00B19 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		230C53192F3D7E8E00D00B19 /* project.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = project.yml; sourceTree = "<group>"; };
-		230C531A2F3D7E8E00D00B19 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		230C531C2F3D7E8E00D00B19 /* .ruby-version */ = {isa = PBXFileReference; lastKnownFileType = text; path = ".ruby-version"; sourceTree = "<group>"; };
-		230C531D2F3D7E8E00D00B19 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		230C531E2F3D7E8E00D00B19 /* spotify_token_swap.rb */ = {isa = PBXFileReference; lastKnownFileType = text.script.ruby; path = spotify_token_swap.rb; sourceTree = "<group>"; };
-		230C53202F3D7E8E00D00B19 /* SPTAppRemoteCallback.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = SPTAppRemoteCallback.html; sourceTree = "<group>"; };
-		230C53222F3D7E8E00D00B19 /* SPTAppRemote.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = SPTAppRemote.html; sourceTree = "<group>"; };
-		230C53232F3D7E8E00D00B19 /* SPTAppRemoteConnectionParams.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = SPTAppRemoteConnectionParams.html; sourceTree = "<group>"; };
-		230C53242F3D7E8E00D00B19 /* SPTConfiguration.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = SPTConfiguration.html; sourceTree = "<group>"; };
-		230C53252F3D7E8E00D00B19 /* SPTError.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = SPTError.html; sourceTree = "<group>"; };
-		230C53262F3D7E8E00D00B19 /* SPTSession.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = SPTSession.html; sourceTree = "<group>"; };
-		230C53272F3D7E8E00D00B19 /* SPTSessionManager.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = SPTSessionManager.html; sourceTree = "<group>"; };
-		230C53292F3D7E8E00D00B19 /* SPTAppRemoteConnectionParamsImageFormat.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = SPTAppRemoteConnectionParamsImageFormat.html; sourceTree = "<group>"; };
-		230C532A2F3D7E8E00D00B19 /* SPTAppRemoteErrorCode.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = SPTAppRemoteErrorCode.html; sourceTree = "<group>"; };
-		230C532B2F3D7E8E00D00B19 /* SPTAppRemoteLogLevel.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = SPTAppRemoteLogLevel.html; sourceTree = "<group>"; };
-		230C532C2F3D7E8E00D00B19 /* SPTAppRemotePlaybackOptionsRepeatMode.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = SPTAppRemotePlaybackOptionsRepeatMode.html; sourceTree = "<group>"; };
-		230C532D2F3D7E8E00D00B19 /* SPTAuthorizationOptions.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = SPTAuthorizationOptions.html; sourceTree = "<group>"; };
-		230C532E2F3D7E8E00D00B19 /* SPTErrorCode.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = SPTErrorCode.html; sourceTree = "<group>"; };
-		230C532F2F3D7E8E00D00B19 /* SPTScope.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = SPTScope.html; sourceTree = "<group>"; };
-		230C53312F3D7E8E00D00B19 /* _index.scss */ = {isa = PBXFileReference; lastKnownFileType = text; path = _index.scss; sourceTree = "<group>"; };
-		230C53322F3D7E8E00D00B19 /* _layout.scss */ = {isa = PBXFileReference; lastKnownFileType = text; path = _layout.scss; sourceTree = "<group>"; };
-		230C53332F3D7E8E00D00B19 /* _normalize.scss */ = {isa = PBXFileReference; lastKnownFileType = text; path = _normalize.scss; sourceTree = "<group>"; };
-		230C53342F3D7E8E00D00B19 /* _object.scss */ = {isa = PBXFileReference; lastKnownFileType = text; path = _object.scss; sourceTree = "<group>"; };
-		230C53352F3D7E8E00D00B19 /* _print.scss */ = {isa = PBXFileReference; lastKnownFileType = text; path = _print.scss; sourceTree = "<group>"; };
-		230C53362F3D7E8E00D00B19 /* _variables.scss */ = {isa = PBXFileReference; lastKnownFileType = text; path = _variables.scss; sourceTree = "<group>"; };
-		230C53372F3D7E8E00D00B19 /* _xcode.scss */ = {isa = PBXFileReference; lastKnownFileType = text; path = _xcode.scss; sourceTree = "<group>"; };
-		230C53382F3D7E8E00D00B19 /* style.scss */ = {isa = PBXFileReference; lastKnownFileType = text; path = style.scss; sourceTree = "<group>"; };
-		230C533A2F3D7E8E00D00B19 /* style.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = style.css; sourceTree = "<group>"; };
-		230C533C2F3D7E8E00D00B19 /* button_bar_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_bar_background.png; sourceTree = "<group>"; };
-		230C533D2F3D7E8E00D00B19 /* disclosure.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = disclosure.png; sourceTree = "<group>"; };
-		230C533E2F3D7E8E00D00B19 /* disclosure_open.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = disclosure_open.png; sourceTree = "<group>"; };
-		230C533F2F3D7E8E00D00B19 /* library_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = library_background.png; sourceTree = "<group>"; };
-		230C53402F3D7E8E00D00B19 /* title_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = title_background.png; sourceTree = "<group>"; };
-		230C53422F3D7E8E00D00B19 /* script.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = script.js; sourceTree = "<group>"; };
-		230C53442F3D7E8E00D00B19 /* SPTAppRemoteAlbum.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = SPTAppRemoteAlbum.html; sourceTree = "<group>"; };
-		230C53452F3D7E8E00D00B19 /* SPTAppRemoteArtist.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = SPTAppRemoteArtist.html; sourceTree = "<group>"; };
-		230C53462F3D7E8E00D00B19 /* SPTAppRemoteConnectivityAPI.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = SPTAppRemoteConnectivityAPI.html; sourceTree = "<group>"; };
-		230C53472F3D7E8E00D00B19 /* SPTAppRemoteConnectivityAPIDelegate.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = SPTAppRemoteConnectivityAPIDelegate.html; sourceTree = "<group>"; };
-		230C53482F3D7E8E00D00B19 /* SPTAppRemoteConnectivityState.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = SPTAppRemoteConnectivityState.html; sourceTree = "<group>"; };
-		230C53492F3D7E8E00D00B19 /* SPTAppRemoteContentAPI.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = SPTAppRemoteContentAPI.html; sourceTree = "<group>"; };
-		230C534A2F3D7E8E00D00B19 /* SPTAppRemoteContentItem.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = SPTAppRemoteContentItem.html; sourceTree = "<group>"; };
-		230C534B2F3D7E8E00D00B19 /* SPTAppRemoteCrossfadeState.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = SPTAppRemoteCrossfadeState.html; sourceTree = "<group>"; };
-		230C534C2F3D7E8E00D00B19 /* SPTAppRemoteDelegate.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = SPTAppRemoteDelegate.html; sourceTree = "<group>"; };
-		230C534D2F3D7E8E00D00B19 /* SPTAppRemoteImageAPI.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = SPTAppRemoteImageAPI.html; sourceTree = "<group>"; };
-		230C534E2F3D7E8E00D00B19 /* SPTAppRemoteImageRepresentable.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = SPTAppRemoteImageRepresentable.html; sourceTree = "<group>"; };
-		230C534F2F3D7E8E00D00B19 /* SPTAppRemoteLibraryState.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = SPTAppRemoteLibraryState.html; sourceTree = "<group>"; };
-		230C53502F3D7E8E00D00B19 /* SPTAppRemotePlaybackOptions.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = SPTAppRemotePlaybackOptions.html; sourceTree = "<group>"; };
-		230C53512F3D7E8E00D00B19 /* SPTAppRemotePlaybackRestrictions.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = SPTAppRemotePlaybackRestrictions.html; sourceTree = "<group>"; };
-		230C53522F3D7E8E00D00B19 /* SPTAppRemotePlayerAPI.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = SPTAppRemotePlayerAPI.html; sourceTree = "<group>"; };
-		230C53532F3D7E8E00D00B19 /* SPTAppRemotePlayerState.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = SPTAppRemotePlayerState.html; sourceTree = "<group>"; };
-		230C53542F3D7E8E00D00B19 /* SPTAppRemotePlayerStateDelegate.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = SPTAppRemotePlayerStateDelegate.html; sourceTree = "<group>"; };
-		230C53552F3D7E8E00D00B19 /* SPTAppRemotePodcastPlaybackSpeed.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = SPTAppRemotePodcastPlaybackSpeed.html; sourceTree = "<group>"; };
-		230C53562F3D7E8E00D00B19 /* SPTAppRemoteTrack.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = SPTAppRemoteTrack.html; sourceTree = "<group>"; };
-		230C53572F3D7E8E00D00B19 /* SPTAppRemoteUserAPI.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = SPTAppRemoteUserAPI.html; sourceTree = "<group>"; };
-		230C53582F3D7E8E00D00B19 /* SPTAppRemoteUserAPIDelegate.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = SPTAppRemoteUserAPIDelegate.html; sourceTree = "<group>"; };
-		230C53592F3D7E8E00D00B19 /* SPTAppRemoteUserCapabilities.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = SPTAppRemoteUserCapabilities.html; sourceTree = "<group>"; };
-		230C535A2F3D7E8E00D00B19 /* SPTSessionManagerDelegate.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = SPTSessionManagerDelegate.html; sourceTree = "<group>"; };
-		230C535C2F3D7E8E00D00B19 /* hierarchy.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = hierarchy.html; sourceTree = "<group>"; };
-		230C535D2F3D7E8E00D00B19 /* index.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
-		230C535F2F3D7E8E00D00B19 /* auth.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = auth.md; sourceTree = "<group>"; };
-		230C53612F3D7E8E00D00B19 /* import_sdk.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = import_sdk.png; sourceTree = "<group>"; };
-		230C53622F3D7E8E00D00B19 /* info_plist.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = info_plist.png; sourceTree = "<group>"; };
-		230C53632F3D7E8E00D00B19 /* xcframework-import.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "xcframework-import.png"; sourceTree = "<group>"; };
-		230C53652F3D7E8E00D00B19 /* MPMessagePack-LICENSE.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "MPMessagePack-LICENSE.md"; sourceTree = "<group>"; };
-		230C53672F3D7E8E00D00B19 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
-		230C53682F3D7E8E00D00B19 /* catalog-info.yaml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = "catalog-info.yaml"; sourceTree = "<group>"; };
-		230C53692F3D7E8E00D00B19 /* CHANGELOG.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
-		230C536A2F3D7E8E00D00B19 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
-		230C536B2F3D7E8E00D00B19 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		230C536C2F3D7E8E00D00B19 /* SpotifyiOS.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = SpotifyiOS.xcframework; sourceTree = "<group>"; };
-		230C53722F3D7F4E00D00B19 /* Flick-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Flick-Bridging-Header.h"; sourceTree = "<group>"; };
 		235266552F350AFE0071AD79 /* Flick.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Flick.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		235266622F350B010071AD79 /* FlickTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FlickTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2352666C2F350B010071AD79 /* FlickUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FlickUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -251,7 +138,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				230C536F2F3D7EE000D00B19 /* SpotifyiOS.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -293,274 +179,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		230C52F92F3D7E8E00D00B19 /* NowPlayingView */ = {
-			isa = PBXGroup;
-			children = (
-				230C52E92F3D7E8E00D00B19 /* AppDelegate.swift */,
-				230C52EA2F3D7E8E00D00B19 /* Assets.xcassets */,
-				230C52EB2F3D7E8E00D00B19 /* ConnectionStatusIndicatorView.swift */,
-				230C52EC2F3D7E8E00D00B19 /* ContentCollectionViewController.swift */,
-				230C52ED2F3D7E8E00D00B19 /* ContentItemCell.swift */,
-				230C52EE2F3D7E8E00D00B19 /* host.entitlements */,
-				230C52EF2F3D7E8E00D00B19 /* Info.plist */,
-				230C52F12F3D7E8E00D00B19 /* LaunchScreen.storyboard */,
-				230C52F32F3D7E8E00D00B19 /* Main.storyboard */,
-				230C52F42F3D7E8E00D00B19 /* My-Extensions.swift */,
-				230C52F52F3D7E8E00D00B19 /* PlaybackButtonGraphics.swift */,
-				230C52F62F3D7E8E00D00B19 /* SceneDelegate.swift */,
-				230C52F72F3D7E8E00D00B19 /* SpeedPickerViewController.swift */,
-				230C52F82F3D7E8E00D00B19 /* ViewController.swift */,
-			);
-			path = NowPlayingView;
-			sourceTree = "<group>";
-		};
-		230C52FC2F3D7E8E00D00B19 /* NowPlayingView */ = {
-			isa = PBXGroup;
-			children = (
-				230C52F92F3D7E8E00D00B19 /* NowPlayingView */,
-				230C52FA2F3D7E8E00D00B19 /* project.yml */,
-				230C52FB2F3D7E8E00D00B19 /* README.md */,
-			);
-			path = NowPlayingView;
-			sourceTree = "<group>";
-		};
-		230C530C2F3D7E8E00D00B19 /* SPTLoginSampleAppObjc */ = {
-			isa = PBXGroup;
-			children = (
-				230C52FD2F3D7E8E00D00B19 /* AppDelegate.h */,
-				230C52FE2F3D7E8E00D00B19 /* AppDelegate.m */,
-				230C52FF2F3D7E8E00D00B19 /* Assets.xcassets */,
-				230C53002F3D7E8E00D00B19 /* ConnectButton.h */,
-				230C53012F3D7E8E00D00B19 /* ConnectButton.m */,
-				230C53022F3D7E8E00D00B19 /* ConnectView.h */,
-				230C53032F3D7E8E00D00B19 /* ConnectView.m */,
-				230C53042F3D7E8E00D00B19 /* Info.plist */,
-				230C53062F3D7E8E00D00B19 /* LaunchScreen.storyboard */,
-				230C53072F3D7E8E00D00B19 /* main.m */,
-				230C53082F3D7E8E00D00B19 /* SceneDelegate.h */,
-				230C53092F3D7E8E00D00B19 /* SceneDelegate.m */,
-				230C530A2F3D7E8E00D00B19 /* ViewController.h */,
-				230C530B2F3D7E8E00D00B19 /* ViewController.m */,
-			);
-			path = SPTLoginSampleAppObjc;
-			sourceTree = "<group>";
-		};
-		230C530F2F3D7E8E00D00B19 /* SPTLoginSampleAppObjc */ = {
-			isa = PBXGroup;
-			children = (
-				230C530C2F3D7E8E00D00B19 /* SPTLoginSampleAppObjc */,
-				230C530D2F3D7E8E00D00B19 /* project.yml */,
-				230C530E2F3D7E8E00D00B19 /* README.md */,
-			);
-			path = SPTLoginSampleAppObjc;
-			sourceTree = "<group>";
-		};
-		230C53182F3D7E8E00D00B19 /* SPTLoginSampleAppSwift */ = {
-			isa = PBXGroup;
-			children = (
-				230C53102F3D7E8E00D00B19 /* AppDelegate.swift */,
-				230C53112F3D7E8E00D00B19 /* Assets.xcassets */,
-				230C53122F3D7E8E00D00B19 /* ConnectButton.swift */,
-				230C53132F3D7E8E00D00B19 /* Info.plist */,
-				230C53152F3D7E8E00D00B19 /* LaunchScreen.storyboard */,
-				230C53162F3D7E8E00D00B19 /* SceneDelegate.swift */,
-				230C53172F3D7E8E00D00B19 /* ViewController.swift */,
-			);
-			path = SPTLoginSampleAppSwift;
-			sourceTree = "<group>";
-		};
-		230C531B2F3D7E8E00D00B19 /* SPTLoginSampleAppSwift */ = {
-			isa = PBXGroup;
-			children = (
-				230C53182F3D7E8E00D00B19 /* SPTLoginSampleAppSwift */,
-				230C53192F3D7E8E00D00B19 /* project.yml */,
-				230C531A2F3D7E8E00D00B19 /* README.md */,
-			);
-			path = SPTLoginSampleAppSwift;
-			sourceTree = "<group>";
-		};
-		230C531F2F3D7E8E00D00B19 /* DemoProjects */ = {
-			isa = PBXGroup;
-			children = (
-				230C52FC2F3D7E8E00D00B19 /* NowPlayingView */,
-				230C530F2F3D7E8E00D00B19 /* SPTLoginSampleAppObjc */,
-				230C531B2F3D7E8E00D00B19 /* SPTLoginSampleAppSwift */,
-				230C531C2F3D7E8E00D00B19 /* .ruby-version */,
-				230C531D2F3D7E8E00D00B19 /* README.md */,
-				230C531E2F3D7E8E00D00B19 /* spotify_token_swap.rb */,
-			);
-			path = DemoProjects;
-			sourceTree = "<group>";
-		};
-		230C53212F3D7E8E00D00B19 /* Blocks */ = {
-			isa = PBXGroup;
-			children = (
-				230C53202F3D7E8E00D00B19 /* SPTAppRemoteCallback.html */,
-			);
-			path = Blocks;
-			sourceTree = "<group>";
-		};
-		230C53282F3D7E8E00D00B19 /* Classes */ = {
-			isa = PBXGroup;
-			children = (
-				230C53222F3D7E8E00D00B19 /* SPTAppRemote.html */,
-				230C53232F3D7E8E00D00B19 /* SPTAppRemoteConnectionParams.html */,
-				230C53242F3D7E8E00D00B19 /* SPTConfiguration.html */,
-				230C53252F3D7E8E00D00B19 /* SPTError.html */,
-				230C53262F3D7E8E00D00B19 /* SPTSession.html */,
-				230C53272F3D7E8E00D00B19 /* SPTSessionManager.html */,
-			);
-			path = Classes;
-			sourceTree = "<group>";
-		};
-		230C53302F3D7E8E00D00B19 /* Constants */ = {
-			isa = PBXGroup;
-			children = (
-				230C53292F3D7E8E00D00B19 /* SPTAppRemoteConnectionParamsImageFormat.html */,
-				230C532A2F3D7E8E00D00B19 /* SPTAppRemoteErrorCode.html */,
-				230C532B2F3D7E8E00D00B19 /* SPTAppRemoteLogLevel.html */,
-				230C532C2F3D7E8E00D00B19 /* SPTAppRemotePlaybackOptionsRepeatMode.html */,
-				230C532D2F3D7E8E00D00B19 /* SPTAuthorizationOptions.html */,
-				230C532E2F3D7E8E00D00B19 /* SPTErrorCode.html */,
-				230C532F2F3D7E8E00D00B19 /* SPTScope.html */,
-			);
-			path = Constants;
-			sourceTree = "<group>";
-		};
-		230C53392F3D7E8E00D00B19 /* scss */ = {
-			isa = PBXGroup;
-			children = (
-				230C53312F3D7E8E00D00B19 /* _index.scss */,
-				230C53322F3D7E8E00D00B19 /* _layout.scss */,
-				230C53332F3D7E8E00D00B19 /* _normalize.scss */,
-				230C53342F3D7E8E00D00B19 /* _object.scss */,
-				230C53352F3D7E8E00D00B19 /* _print.scss */,
-				230C53362F3D7E8E00D00B19 /* _variables.scss */,
-				230C53372F3D7E8E00D00B19 /* _xcode.scss */,
-				230C53382F3D7E8E00D00B19 /* style.scss */,
-			);
-			path = scss;
-			sourceTree = "<group>";
-		};
-		230C533B2F3D7E8E00D00B19 /* css */ = {
-			isa = PBXGroup;
-			children = (
-				230C53392F3D7E8E00D00B19 /* scss */,
-				230C533A2F3D7E8E00D00B19 /* style.css */,
-			);
-			path = css;
-			sourceTree = "<group>";
-		};
-		230C53412F3D7E8E00D00B19 /* img */ = {
-			isa = PBXGroup;
-			children = (
-				230C533C2F3D7E8E00D00B19 /* button_bar_background.png */,
-				230C533D2F3D7E8E00D00B19 /* disclosure.png */,
-				230C533E2F3D7E8E00D00B19 /* disclosure_open.png */,
-				230C533F2F3D7E8E00D00B19 /* library_background.png */,
-				230C53402F3D7E8E00D00B19 /* title_background.png */,
-			);
-			path = img;
-			sourceTree = "<group>";
-		};
-		230C53432F3D7E8E00D00B19 /* js */ = {
-			isa = PBXGroup;
-			children = (
-				230C53422F3D7E8E00D00B19 /* script.js */,
-			);
-			path = js;
-			sourceTree = "<group>";
-		};
-		230C535B2F3D7E8E00D00B19 /* Protocols */ = {
-			isa = PBXGroup;
-			children = (
-				230C53442F3D7E8E00D00B19 /* SPTAppRemoteAlbum.html */,
-				230C53452F3D7E8E00D00B19 /* SPTAppRemoteArtist.html */,
-				230C53462F3D7E8E00D00B19 /* SPTAppRemoteConnectivityAPI.html */,
-				230C53472F3D7E8E00D00B19 /* SPTAppRemoteConnectivityAPIDelegate.html */,
-				230C53482F3D7E8E00D00B19 /* SPTAppRemoteConnectivityState.html */,
-				230C53492F3D7E8E00D00B19 /* SPTAppRemoteContentAPI.html */,
-				230C534A2F3D7E8E00D00B19 /* SPTAppRemoteContentItem.html */,
-				230C534B2F3D7E8E00D00B19 /* SPTAppRemoteCrossfadeState.html */,
-				230C534C2F3D7E8E00D00B19 /* SPTAppRemoteDelegate.html */,
-				230C534D2F3D7E8E00D00B19 /* SPTAppRemoteImageAPI.html */,
-				230C534E2F3D7E8E00D00B19 /* SPTAppRemoteImageRepresentable.html */,
-				230C534F2F3D7E8E00D00B19 /* SPTAppRemoteLibraryState.html */,
-				230C53502F3D7E8E00D00B19 /* SPTAppRemotePlaybackOptions.html */,
-				230C53512F3D7E8E00D00B19 /* SPTAppRemotePlaybackRestrictions.html */,
-				230C53522F3D7E8E00D00B19 /* SPTAppRemotePlayerAPI.html */,
-				230C53532F3D7E8E00D00B19 /* SPTAppRemotePlayerState.html */,
-				230C53542F3D7E8E00D00B19 /* SPTAppRemotePlayerStateDelegate.html */,
-				230C53552F3D7E8E00D00B19 /* SPTAppRemotePodcastPlaybackSpeed.html */,
-				230C53562F3D7E8E00D00B19 /* SPTAppRemoteTrack.html */,
-				230C53572F3D7E8E00D00B19 /* SPTAppRemoteUserAPI.html */,
-				230C53582F3D7E8E00D00B19 /* SPTAppRemoteUserAPIDelegate.html */,
-				230C53592F3D7E8E00D00B19 /* SPTAppRemoteUserCapabilities.html */,
-				230C535A2F3D7E8E00D00B19 /* SPTSessionManagerDelegate.html */,
-			);
-			path = Protocols;
-			sourceTree = "<group>";
-		};
-		230C535E2F3D7E8E00D00B19 /* html */ = {
-			isa = PBXGroup;
-			children = (
-				230C53212F3D7E8E00D00B19 /* Blocks */,
-				230C53282F3D7E8E00D00B19 /* Classes */,
-				230C53302F3D7E8E00D00B19 /* Constants */,
-				230C533B2F3D7E8E00D00B19 /* css */,
-				230C53412F3D7E8E00D00B19 /* img */,
-				230C53432F3D7E8E00D00B19 /* js */,
-				230C535B2F3D7E8E00D00B19 /* Protocols */,
-				230C535C2F3D7E8E00D00B19 /* hierarchy.html */,
-				230C535D2F3D7E8E00D00B19 /* index.html */,
-			);
-			path = html;
-			sourceTree = "<group>";
-		};
-		230C53602F3D7E8E00D00B19 /* docs */ = {
-			isa = PBXGroup;
-			children = (
-				230C535E2F3D7E8E00D00B19 /* html */,
-				230C535F2F3D7E8E00D00B19 /* auth.md */,
-			);
-			path = docs;
-			sourceTree = "<group>";
-		};
-		230C53642F3D7E8E00D00B19 /* img */ = {
-			isa = PBXGroup;
-			children = (
-				230C53612F3D7E8E00D00B19 /* import_sdk.png */,
-				230C53622F3D7E8E00D00B19 /* info_plist.png */,
-				230C53632F3D7E8E00D00B19 /* xcframework-import.png */,
-			);
-			path = img;
-			sourceTree = "<group>";
-		};
-		230C53662F3D7E8E00D00B19 /* Licenses */ = {
-			isa = PBXGroup;
-			children = (
-				230C53652F3D7E8E00D00B19 /* MPMessagePack-LICENSE.md */,
-			);
-			path = Licenses;
-			sourceTree = "<group>";
-		};
-		230C536D2F3D7E8E00D00B19 /* ios-sdk-5.0.1 */ = {
-			isa = PBXGroup;
-			children = (
-				230C531F2F3D7E8E00D00B19 /* DemoProjects */,
-				230C53602F3D7E8E00D00B19 /* docs */,
-				230C53642F3D7E8E00D00B19 /* img */,
-				230C53662F3D7E8E00D00B19 /* Licenses */,
-				230C53672F3D7E8E00D00B19 /* .gitignore */,
-				230C53682F3D7E8E00D00B19 /* catalog-info.yaml */,
-				230C53692F3D7E8E00D00B19 /* CHANGELOG.md */,
-				230C536A2F3D7E8E00D00B19 /* Package.swift */,
-				230C536B2F3D7E8E00D00B19 /* README.md */,
-				230C536C2F3D7E8E00D00B19 /* SpotifyiOS.xcframework */,
-			);
-			path = "ios-sdk-5.0.1";
-			sourceTree = "<group>";
-		};
 		230C536E2F3D7EE000D00B19 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -579,7 +197,6 @@
 				2352668A2F350B020071AD79 /* Flick Watch AppTests */,
 				235266942F350B020071AD79 /* Flick Watch AppUITests */,
 				235266562F350AFE0071AD79 /* Products */,
-				230C536D2F3D7E8E00D00B19 /* ios-sdk-5.0.1 */,
 				230C536E2F3D7EE000D00B19 /* Frameworks */,
 			);
 			sourceTree = "<group>";
@@ -600,7 +217,6 @@
 		235266C82F35186C0071AD79 /* CommunicationFramework */ = {
 			isa = PBXGroup;
 			children = (
-				230C53722F3D7F4E00D00B19 /* Flick-Bridging-Header.h */,
 				235266C92F35188E0071AD79 /* WatchConnectivityManager.swift */,
 				235266C52F3517060071AD79 /* SharedTypes.swift */,
 			);
@@ -929,41 +545,6 @@
 		};
 /* End PBXTargetDependency section */
 
-/* Begin PBXVariantGroup section */
-		230C52F12F3D7E8E00D00B19 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				230C52F02F3D7E8E00D00B19 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-		230C52F32F3D7E8E00D00B19 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				230C52F22F3D7E8E00D00B19 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		230C53062F3D7E8E00D00B19 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				230C53052F3D7E8E00D00B19 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-		230C53152F3D7E8E00D00B19 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				230C53142F3D7E8E00D00B19 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
-
 /* Begin XCBuildConfiguration section */
 		235266992F350B020071AD79 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -1179,7 +760,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2;
+				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = wildcat.gestureplayback.Flick;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
@@ -1187,7 +768,6 @@
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				"SWIFT_OBJC_BRIDGING_HEADER[arch=*]" = "CommunicationFramework/Flick-Bridging-Header.h";
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1220,7 +800,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2;
+				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = wildcat.gestureplayback.Flick;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
@@ -1228,7 +808,6 @@
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				"SWIFT_OBJC_BRIDGING_HEADER[arch=*]" = "CommunicationFramework/Flick-Bridging-Header.h";
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

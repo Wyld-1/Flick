@@ -44,7 +44,7 @@ struct PlayerSetupView: View {
                         FlickServiceCard(
                             isSelected: selectedMethod == .appleMusic,
                             title: "Apple Music",
-                            description: "Native Control",
+                            description: "",
                             iconName: "Apple Music Icon",
                             isSystemIcon: false,
                             color: .pink
@@ -53,7 +53,7 @@ struct PlayerSetupView: View {
                         FlickServiceCard(
                             isSelected: selectedMethod == .spotify,
                             title: "Spotify",
-                            description: "App Remote",
+                            description: "",
                             iconName: "Spotify Icon",
                             isSystemIcon: false,
                             color: .green
@@ -115,7 +115,7 @@ struct PlayerSetupView: View {
     
     private var infoText: String {
         switch selectedMethod {
-        case .appleMusic: return ""
+        case .appleMusic: return "Apple Muisc subscription required."
         case .spotify: return "Spotify Premium required."
         case .shortcuts: return "You will be guided through Shortcuts setup next."
         }
@@ -140,6 +140,8 @@ struct PlayerSetupView: View {
                     appState.completePlaybackChoice(method: .spotify)
                 }
             }
+            // Note: auth is also triggered automatically on the first gesture
+            // if the user skips it here. Re-auth is available in Settings.
         case .shortcuts:
             showShortcutsSetup = true
         }
