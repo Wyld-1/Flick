@@ -91,7 +91,7 @@ struct DataCollectionView: View {
                             HapticManager.shared.playSelection()
                             
                             if isWatchConnected {
-                                if(dataCollector.isRecording) {
+                                if dataCollector.isRecording {
                                     totalRecordingTime = dataCollector.formattedDuration
                                 }
                                 dataCollector.toggleRecording()
@@ -107,12 +107,13 @@ struct DataCollectionView: View {
                                     .font(.system(.headline, design: .monospaced))
                                     .bold()
                             }
+                            .frame(maxWidth: .infinity, minHeight: 45)
                             .foregroundStyle(.white)
-                            .frame(maxWidth: .infinity)
                         }
-                        .buttonStyle(VividGlassButtonStyle(color: dataCollector.isRecording ? .red : .orange))
                         .padding(.horizontal, 30)
-                        .padding(.bottom, 30)
+                        .tint(dataCollector.isRecording ? .red : .orange)
+                        .buttonStyle(.glassProminent)
+                        .buttonBorderShape(.capsule)
                     }
                     .transition(.move(edge: .bottom).combined(with: .opacity))
                 }

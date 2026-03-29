@@ -135,18 +135,12 @@ struct ConnectionHelpView: View {
                                 .multilineTextAlignment(.center)
                                 .padding(.top, 8)
                             
-                            Button(action: {
+                            Button("Report a bug")
+                            {
                                 if let url = URL(string: "https://forms.gle/RSBVKFks8jatoQLS8") {
                                     UIApplication.shared.open(url)
                                 }
-                            }) {
-                                Text("Report a Bug")
-                                    .font(.headline)
-                                    .fontWeight(.bold)
-                                    .frame(maxWidth: .infinity)
-                                    .foregroundStyle(.black)
                             }
-                            .buttonStyle(VividGlassButtonStyle())
                         }
                     }
                 }

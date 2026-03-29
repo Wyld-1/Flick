@@ -54,35 +54,6 @@ struct ScaleButtonStyle: ButtonStyle {
     }
 }
 
-struct VividGlassButtonStyle: ButtonStyle {
-    var color: Color = .orange
-    
-    func makeBody(configuration: Configuration) -> some View {
-        configuration.label
-            .padding(.vertical, 18)
-            .padding(.horizontal, 24)
-            .background(color) // Use dynamic color
-            .clipShape(Capsule())
-            .overlay(
-                Capsule()
-                    .stroke(
-                        LinearGradient(
-                            stops: [
-                                .init(color: .white.opacity(0.5), location: 0),
-                                .init(color: .white.opacity(0.0), location: 0.5),
-                                .init(color: .white.opacity(0.2), location: 1)
-                            ],
-                            startPoint: .topLeading,
-                            endPoint: .bottomTrailing
-                        ),
-                        lineWidth: 1.5
-                    )
-            )
-            .scaleEffect(configuration.isPressed ? 0.95 : 1)
-            .animation(.spring(response: 0.3), value: configuration.isPressed)
-    }
-}
-
 // MARK: - Glass Status Dock
 
 struct GlassStatusDock: View {

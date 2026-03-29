@@ -51,20 +51,22 @@ struct WelcomeView: View {
                 
                 Spacer()
                 
-                // Bright orange Continue button
+                // Continue button
                 Button(action: {
                     HapticManager.shared.playImpact()
                     appState.completeWelcome()
                 }) {
                     Text("Continue")
                         .font(.headline)
-                        .fontWeight(.bold)
+                        .bold()
                         .frame(maxWidth: .infinity)
+                        .frame(height: 45)
                         .foregroundStyle(.black)
                 }
-                .buttonStyle(VividGlassButtonStyle()) // Uses shared style
                 .padding(.horizontal, 30)
-                .padding(.bottom, 50)
+                .tint(.orange)
+                .buttonStyle(.glassProminent)
+                .buttonBorderShape(.capsule)
             }
         }
     }

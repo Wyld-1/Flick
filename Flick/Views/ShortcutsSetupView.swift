@@ -126,20 +126,21 @@ struct ShortcutsSetupView: View {
                 .tabViewStyle(.page(indexDisplayMode: .never))
                 
                 // Bottom Navigation
-                VStack {
-                    Button(action: {
-                        handleNextButton()
-                    }) {
-                        Text(isLastStep ? "Finish Setup" : "Next Step")
-                            .font(.headline)
-                            .fontWeight(.bold)
-                            .frame(maxWidth: .infinity)
-                            .foregroundStyle(.black)
-                    }
-                    .buttonStyle(VividGlassButtonStyle())
-                    .padding(.horizontal, 24)
-                    .padding(.bottom, 20)
+                Button(action: {
+                    HapticManager.shared.playImpact()
+                    handleNextButton()
+                }) {
+                    Text(isLastStep ? "Finish Setup" : "Next Step")
+                        .font(.headline)
+                        .fontWeight(.bold)
+                        .frame(maxWidth: .infinity)
+                        .foregroundStyle(.black)
+                        .frame(height: 45)
                 }
+                .padding(.horizontal, 30)
+                .tint(.orange)
+                .buttonStyle(.glassProminent)
+                .buttonBorderShape(.capsule)
             }
         }
         .preferredColorScheme(.dark)
@@ -202,42 +203,41 @@ struct StepCardView: View {
                 Text(step.title)
                     .font(.system(size: 34, weight: .bold, design: .rounded))
                     .foregroundStyle(.white)
-                    .frame(height: 45) // Fixed height for title line
+                    .frame(height: 45)
             }
-            .padding(.bottom, 30) // Spacing between Header and Content
+            .padding(.bottom, 30)
             
-            // --- CONTENT ZONE ---
+            // Content
             if step.isDownloadable {
-                // DOWNLOADABLE LAYOUT (Steps 2-4)
                 VStack(spacing: 0) {
                     
-                    // The "Action Card"
                     VStack(spacing: 0) {
                         
-                        // 1. Primary Action: Add Shortcut Link
+                        // Primary Action: Add Shortcut Link
                         if let action = step.actionTitle, let urlString = step.urlScheme, let url = URL(string: urlString) {
-                            Button(action: { UIApplication.shared.open(url) }) {
-                                HStack {
+                            Button(action: {
+                                UIApplication.shared.open(url)
+                            }) {
+                                HStack(spacing: 12) {
                                     Image(systemName: "icloud.and.arrow.down")
                                         .font(.title3)
                                     Text(action)
                                         .font(.headline)
-                                        .fontWeight(.bold)
+                                        .bold()
                                 }
-                                .frame(maxWidth: .infinity)
-                                .padding(.vertical, 18)
-                                .background(Color.orange)
+                                .frame(maxWidth: .infinity, minHeight: 45)
                                 .foregroundStyle(.black)
-                                .clipShape(Capsule())
                             }
-                            .padding(20)
+                            .tint(.orange)
+                            .buttonStyle(.glassProminent)
+                            .buttonBorderShape(.capsule)
                         }
                         
                         Divider()
                             .background(Color.white.opacity(0.1))
                             .padding(.horizontal, 20)
                         
-                        // 2. Manual Fallback Toggle
+                        // Manual Fallback Toggle
                         VStack(spacing: 0) {
                             Button(action: {
                                 withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
@@ -254,10 +254,10 @@ struct StepCardView: View {
                                         .foregroundStyle(.gray)
                                         .rotationEffect(.degrees(isManualExpanded ? 90 : 0))
                                     
-                                    Spacer() // Pushes content to left
+                                    Spacer()
                                 }
                                 .padding(.horizontal, 20)
-                                .padding(.vertical, 16)
+                                .padding(.vertical, 20)
                                 .contentShape(Rectangle())
                             }
                             

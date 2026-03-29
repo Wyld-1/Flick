@@ -16,13 +16,34 @@ struct PlayerSetupView: View {
             ZStack {
                 Color.black.ignoresSafeArea()
                 
-                RadialGradient(
-                    gradient: Gradient(colors: [.orange.opacity(0.1), .clear]),
-                    center: .center,
-                    startRadius: 10,
-                    endRadius: 500
-                )
-                .ignoresSafeArea()
+                // Selection-dependent background
+                if selectedMethod == .appleMusic {
+                    RadialGradient(
+                        gradient: Gradient(colors: [.pink.opacity(0.1), .clear]),
+                        center: .center,
+                        startRadius: 10,
+                        endRadius: 500
+                    )
+                    .ignoresSafeArea()
+                }
+                else if selectedMethod == .spotify {
+                    RadialGradient(
+                        gradient: Gradient(colors: [.green.opacity(0.1), .clear]),
+                        center: .center,
+                        startRadius: 10,
+                        endRadius: 500
+                    )
+                    .ignoresSafeArea()
+                }
+                else {
+                    RadialGradient(
+                        gradient: Gradient(colors: [.indigo.opacity(0.1), .clear]),
+                        center: .center,
+                        startRadius: 10,
+                        endRadius: 500
+                    )
+                    .ignoresSafeArea()
+                }
                 
                 VStack(spacing: 0) {
                     VStack(spacing: 16) {
@@ -77,7 +98,7 @@ struct PlayerSetupView: View {
                     Text(infoText)
                         .font(.caption)
                         .foregroundStyle(.gray)
-                        .frame(height: 40)
+                        .frame(height: 50)
                     
                     Button(action: handleContinue) {
                         HStack {
@@ -85,14 +106,16 @@ struct PlayerSetupView: View {
                                 ProgressView().tint(.black).padding(.trailing, 8)
                             }
                             Text(isAuthorizingSpotify ? "Connecting..." : "Continue")
+                                .frame(height: 45)
                         }
                         .font(.headline).bold()
                         .frame(maxWidth: .infinity)
                         .foregroundStyle(.black)
                     }
-                    .buttonStyle(VividGlassButtonStyle())
                     .padding(.horizontal, 30)
-                    .padding(.bottom, 50)
+                    .tint(.orange)
+                    .buttonStyle(.glassProminent)
+                    .buttonBorderShape(.capsule)
                     .disabled(isAuthorizingSpotify)
                 }
             }
