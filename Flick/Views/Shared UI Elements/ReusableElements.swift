@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import UIKit // Required for UIImpactFeedbackGenerator
+import UIKit
 import WatchConnectivity
 
 // MARK: - Haptic Manager
@@ -51,6 +51,45 @@ struct ScaleButtonStyle: ButtonStyle {
             .scaleEffect(configuration.isPressed ? 0.95 : 1)
             .animation(.easeInOut(duration: 0.1), value: configuration.isPressed)
             .opacity(configuration.isPressed ? 0.7 : 1)
+    }
+}
+
+// MARK: - Glass Compatibility Modifiers
+
+extension View {
+    /// Applies `.glassEffect(.regular.interactive())` on iOS 26+.
+    /// Falls back to ultraThinMaterial + stroke on iOS 17–25.
+    @ViewBuilder
+    func flickGlass<S: Shape>(in shape: S) -> some View {
+        if #available(iOS 26, *) {
+            self
+                .glassEffect(.regular.interactive(), in: shape)
+        } else {
+            self
+                .background(.ultraThinMaterial, in: shape)
+                .overlay(
+                    shape
+                        .stroke(.white.opacity(0.15), lineWidth: 0.75)
+                )
+        }
+    }
+
+    /// Replicates `.buttonStyle(.glassProminent)` on iOS 26+.
+    /// Falls back to a filled orange capsule on iOS 17–25.
+    @ViewBuilder
+    func flickProminentButton(tint: Color = .orange) -> some View {
+        if #available(iOS 26, *) {
+            self
+                .buttonStyle(.glassProminent)
+                .buttonBorderShape(.capsule)
+        } else {
+            self
+                .background(
+                    Capsule()
+                        .fill(tint)
+                )
+                .clipShape(Capsule())
+        }
     }
 }
 
@@ -99,25 +138,10 @@ struct GlassStatusDock: View {
                     .frame(width: 8, height: 48)
             }
             .padding(.horizontal, 20)
-            .background(.ultraThinMaterial)
-            .clipShape(Capsule())
-            .overlay(
-                Capsule()
-                    .stroke(
-                        LinearGradient(
-                            stops: [
-                                .init(color: .white.opacity(0.4), location: 0),
-                                .init(color: .white.opacity(0.0), location: 0.5),
-                                .init(color: .white.opacity(0.2), location: 1)
-                            ],
-                            startPoint: .topLeading,
-                            endPoint: .bottomTrailing
-                        ),
-                        lineWidth: 1
-                    )
-            )
-            .shadow(color: .black.opacity(0.2), radius: 10, y: 5)
         }
+        // glassEffect must wrap the whole button so the interactive depth-
+        // response and specular highlight cover the entire tappable surface.
+        .flickGlass(in: Capsule())
         .buttonStyle(ScaleButtonStyle())
         .onChange(of: isConnected) { old, new in
             if new && !previousConnection {

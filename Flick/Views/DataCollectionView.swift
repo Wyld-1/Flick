@@ -112,8 +112,7 @@ struct DataCollectionView: View {
                         }
                         .padding(.horizontal, 30)
                         .tint(dataCollector.isRecording ? .red : .orange)
-                        .buttonStyle(.glassProminent)
-                        .buttonBorderShape(.capsule)
+                        .flickProminentButton(tint: dataCollector.isRecording ? .red : .orange)
                     }
                     .transition(.move(edge: .bottom).combined(with: .opacity))
                 }
@@ -131,7 +130,10 @@ struct DataCollectionView: View {
                 }
                 
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button(action: { showHelpSheet = true }) {
+                    Button(action: {
+                        HapticManager.shared.playImpact()
+                        showHelpSheet = true
+                    }) {
                         Image(systemName: isWatchConnected ? "applewatch.radiowaves.left.and.right" : "applewatch.slash")
                             .foregroundStyle(isWatchConnected ? .green : .red)
                             .fontWeight(.bold)

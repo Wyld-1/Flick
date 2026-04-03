@@ -139,8 +139,7 @@ struct ShortcutsSetupView: View {
                 }
                 .padding(.horizontal, 30)
                 .tint(.orange)
-                .buttonStyle(.glassProminent)
-                .buttonBorderShape(.capsule)
+                .flickProminentButton()
             }
         }
         .preferredColorScheme(.dark)
@@ -229,8 +228,7 @@ struct StepCardView: View {
                                 .foregroundStyle(.black)
                             }
                             .tint(.orange)
-                            .buttonStyle(.glassProminent)
-                            .buttonBorderShape(.capsule)
+                            .flickProminentButton()
                         }
                         
                         Divider()

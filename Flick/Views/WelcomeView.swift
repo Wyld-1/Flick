@@ -31,7 +31,6 @@ struct WelcomeView: View {
                 Image(systemName: "play")
                     .font(.system(size: 215))
                     .foregroundStyle(.orange)
-                    .symbolEffect(.breathe.plain.wholeSymbol, options: .repeat(.continuous))
                     .shadow(color: .orange.opacity(0.3), radius: 40)
                 
                 Spacer()
@@ -65,8 +64,7 @@ struct WelcomeView: View {
                 }
                 .padding(.horizontal, 30)
                 .tint(.orange)
-                .buttonStyle(.glassProminent)
-                .buttonBorderShape(.capsule)
+                .flickProminentButton()
             }
         }
     }

@@ -34,7 +34,6 @@ struct MainView: View {
                 ZStack {
                     Image(systemName: "circle")
                         .font(.system(size: 290))
-                        .symbolEffect(.breathe.plain.wholeSymbol)
                         .foregroundStyle(.orange.opacity(0.8))
                         .shadow(
                             color: .orange.opacity(0.3),
@@ -51,9 +50,7 @@ struct MainView: View {
             
             VStack {
                 Spacer()
-                
-                HStack(spacing: 16) {
-                    // Watch status dock
+                HStack(spacing: 20) {
                     GlassStatusDock(showHelp: $showHelpSheet)
                     
                     HStack(spacing: 0) {
@@ -70,7 +67,7 @@ struct MainView: View {
                         
                         // Vertical Divider
                         Rectangle()
-                            .fill(.gray.opacity(0.5))
+                            .fill(.white.opacity(0.18))
                             .frame(width: 1, height: 16)
                             .padding(.horizontal, 4)
                         
@@ -85,28 +82,10 @@ struct MainView: View {
                                 .frame(width: 48, height: 48)
                         }
                     }
-                    .background(.ultraThinMaterial)
                     .clipShape(Capsule())
-                    .overlay(
-                        Capsule()
-                            .stroke(
-                                LinearGradient(
-                                    stops: [
-                                        .init(color: .white.opacity(0.4), location: 0),
-                                        .init(color: .white.opacity(0.1), location: 0.5),
-                                        .init(color: .white.opacity(0.05), location: 1)
-                                    ],
-                                    startPoint: .top,
-                                    endPoint: .bottom
-                                ),
-                                lineWidth: 1
-                            )
-                    )
-                    .shadow(color: .black.opacity(0.3), radius: 20, x: 0, y: 10)
+                    .flickGlass(in: Capsule())
                     .buttonStyle(ScaleButtonStyle())
                 }
-                .padding(.horizontal, 24)
-                .padding(.bottom, 0)
             }
         }
         .sheet(isPresented: $showSettings) {

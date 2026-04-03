@@ -114,8 +114,7 @@ struct PlayerSetupView: View {
                     }
                     .padding(.horizontal, 30)
                     .tint(.orange)
-                    .buttonStyle(.glassProminent)
-                    .buttonBorderShape(.capsule)
+                    .flickProminentButton()
                     .disabled(isAuthorizingSpotify)
                 }
             }

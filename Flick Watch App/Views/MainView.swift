@@ -22,10 +22,9 @@ struct MainView: View {
             ZStack {
                 // Tappable background layer
                 ZStack {
-                    // Background breathing circle - color based on recording state
                     Image(systemName: "circle")
                         .font(.system(size: geometry.size.width * 0.85))
-                        .symbolEffect(.breathe.plain.wholeSymbol, isActive: !isLuminanceReduced)
+                        // Optional symbol effect should be inserted here
                         .foregroundStyle(ringColor)
                     
                     // Center content - varies by state
@@ -88,7 +87,7 @@ struct MainView: View {
                         .font(.title3)
                         .foregroundStyle(.secondary)
                 }
-                .buttonStyle(.glass)
+                .watchGlass()
                 .buttonBorderShape(.circle)
                 .controlSize(.small)
                 .clipShape(.circle)

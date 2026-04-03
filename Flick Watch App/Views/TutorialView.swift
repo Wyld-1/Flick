@@ -36,10 +36,9 @@ struct TutorialView: View {
                             .font(.system(.caption2, design: .rounded))
                             .foregroundStyle(.secondary)
                             .padding(.horizontal, 4)
-                            // Magic transition
                             .contentTransition(.numericText(value: Double(currentStep)))
                     }
-                    .buttonStyle(.glass)
+                    .watchGlass()
                     .buttonBorderShape(.capsule)
                     .controlSize(.mini)
                     .fixedSize()
