@@ -43,22 +43,11 @@ class HapticManager {
     }
 }
 
-// MARK: - Button Styles
-
-struct ScaleButtonStyle: ButtonStyle {
-    func makeBody(configuration: Configuration) -> some View {
-        configuration.label
-            .scaleEffect(configuration.isPressed ? 0.95 : 1)
-            .animation(.easeInOut(duration: 0.1), value: configuration.isPressed)
-            .opacity(configuration.isPressed ? 0.7 : 1)
-    }
-}
-
 // MARK: - Glass Compatibility Modifiers
 
 extension View {
-    /// Applies `.glassEffect(.regular.interactive())` on iOS 26+.
-    /// Falls back to ultraThinMaterial + stroke on iOS 17–25.
+    // Applies `.glassEffect(.regular.interactive())` on iOS 26+.
+    // Falls back to ultraThinMaterial + stroke on iOS 17–25.
     @ViewBuilder
     func flickGlass<S: Shape>(in shape: S) -> some View {
         if #available(iOS 26, *) {
@@ -74,8 +63,8 @@ extension View {
         }
     }
 
-    /// Replicates `.buttonStyle(.glassProminent)` on iOS 26+.
-    /// Falls back to a filled orange capsule on iOS 17–25.
+    // Replicates `.buttonStyle(.glassProminent)` on iOS 26+.
+    // Falls back to a filled orange capsule on iOS 17–25.
     @ViewBuilder
     func flickProminentButton(tint: Color = .orange) -> some View {
         if #available(iOS 26, *) {
@@ -92,6 +81,18 @@ extension View {
         }
     }
 }
+
+
+// MARK: - Button Styles
+
+struct ScaleButtonStyle: ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .scaleEffect(configuration.isPressed ? 0.97 : 1)
+            .animation(.easeInOut(duration: 0.15), value: configuration.isPressed)
+    }
+}
+
 
 // MARK: - Glass Status Dock
 
@@ -139,10 +140,10 @@ struct GlassStatusDock: View {
             }
             .padding(.horizontal, 20)
         }
+        .buttonStyle(ScaleButtonStyle())
         // glassEffect must wrap the whole button so the interactive depth-
         // response and specular highlight cover the entire tappable surface.
         .flickGlass(in: Capsule())
-        .buttonStyle(ScaleButtonStyle())
         .onChange(of: isConnected) { old, new in
             if new && !previousConnection {
                 HapticManager.shared.playSuccess()

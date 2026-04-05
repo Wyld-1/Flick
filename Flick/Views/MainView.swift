@@ -84,7 +84,6 @@ struct MainView: View {
                     }
                     .clipShape(Capsule())
                     .flickGlass(in: Capsule())
-                    .buttonStyle(ScaleButtonStyle())
                 }
             }
         }
