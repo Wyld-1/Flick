@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		231F32872FB116A700F58221 /* Flick Icon.icon in Resources */ = {isa = PBXBuildFile; fileRef = 231F32862FB116A700F58221 /* Flick Icon.icon */; };
+		231F32882FB116A700F58221 /* Flick Icon.icon in Resources */ = {isa = PBXBuildFile; fileRef = 231F32862FB116A700F58221 /* Flick Icon.icon */; };
 		235266792F350B010071AD79 /* Flick Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 235266782F350B010071AD79 /* Flick Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		235266C62F3517110071AD79 /* SharedTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235266C52F3517060071AD79 /* SharedTypes.swift */; };
 		235266CA2F35195D0071AD79 /* WatchConnectivityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235266C92F35188E0071AD79 /* WatchConnectivityManager.swift */; };
@@ -77,6 +79,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		231F32862FB116A700F58221 /* Flick Icon.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = "Flick Icon.icon"; sourceTree = "<group>"; };
 		235266552F350AFE0071AD79 /* Flick.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Flick.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		235266622F350B010071AD79 /* FlickTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FlickTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2352666C2F350B010071AD79 /* FlickUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FlickUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -198,6 +201,7 @@
 				235266942F350B020071AD79 /* Flick Watch AppUITests */,
 				235266562F350AFE0071AD79 /* Products */,
 				230C536E2F3D7EE000D00B19 /* Frameworks */,
+				231F32862FB116A700F58221 /* Flick Icon.icon */,
 			);
 			sourceTree = "<group>";
 		};
@@ -428,6 +432,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				231F32882FB116A700F58221 /* Flick Icon.icon in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -449,6 +454,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				231F32872FB116A700F58221 /* Flick Icon.icon in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -665,7 +671,7 @@
 		2352669C2F350B020071AD79 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "Flick Icon";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Flick Watch App/Flick Watch App.entitlements";
 				CODE_SIGN_STYLE = Automatic;
@@ -701,7 +707,7 @@
 		2352669D2F350B020071AD79 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "Flick Icon";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Flick Watch App/Flick Watch App.entitlements";
 				CODE_SIGN_STYLE = Automatic;
@@ -738,7 +744,7 @@
 		235266A02F350B020071AD79 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "Flick Icon";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Flick/Flick.entitlements;
 				CODE_SIGN_STYLE = Automatic;
@@ -777,7 +783,7 @@
 		235266A12F350B020071AD79 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "Flick Icon";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Flick/Flick.entitlements;
 				CODE_SIGN_STYLE = Automatic;
