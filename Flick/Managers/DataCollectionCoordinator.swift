@@ -199,20 +199,25 @@ class DataCollectionCoordinator: ObservableObject {
         
         DispatchQueue.main.async {
             guard let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
-                  let rootViewController = scene.windows.first?.rootViewController else {
+                  let root = scene.windows.first?.rootViewController else {
                 print("📱 Could not find root view controller")
                 return
+            }
+            // Walk to the topmost presented VC (e.g. the DataCollectionView sheet)
+            var topVC = root
+            while let presented = topVC.presentedViewController {
+                topVC = presented
             }
             let activityVC = UIActivityViewController(activityItems: [url], applicationActivities: nil)
             // iPad popover anchor
             if let popover = activityVC.popoverPresentationController {
-                popover.sourceView = rootViewController.view
-                popover.sourceRect = CGRect(x: rootViewController.view.bounds.midX,
-                                           y: rootViewController.view.bounds.midY,
+                popover.sourceView = topVC.view
+                popover.sourceRect = CGRect(x: topVC.view.bounds.midX,
+                                           y: topVC.view.bounds.midY,
                                            width: 0, height: 0)
                 popover.permittedArrowDirections = []
             }
-            rootViewController.present(activityVC, animated: true)
+            topVC.present(activityVC, animated: true)
         }
     }
 }
